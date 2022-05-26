@@ -1,0 +1,26 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="card">
+            <h1 class="mb-0">
+                <i class="fas fa-fw fa-users"></i>
+                {{ 'SECURITY.MANAGEUSERS.LIST.PAGETITLE' | translate }}
+            <small class="float-right">
+                <a class="btn btn-sm btn-link"
+                   [routerLink]="['add']">
+                    <i class="far fa-plus-square"></i>
+                    {{ 'GENERAL.ADDNEW' | translate }}
+                </a>
+            </small>
+            </h1>
+        </div>
+    </div>
+    <div class="p-col-12">
+        <div class="card">
+            <app-grid entityName="users"
+                      deleteActionId="USRDEL"></app-grid>
+        </div>
+    </div>
+    <div class="p-col-12">
+        <router-outlet></router-outlet>
+    </div>
+</div>

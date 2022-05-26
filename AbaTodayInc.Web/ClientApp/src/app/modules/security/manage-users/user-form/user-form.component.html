@@ -1,0 +1,197 @@
+<div class="p-grid">
+    <div class="p-col-12" id="Section1">
+        <div class="card">
+            <h1>
+                <i *ngIf="isLoading" class="fas fa-fw fa-sync fa-spin"></i>
+                <i *ngIf="!isLoading" class="fas fa-fw fa-users"></i>
+                {{ pageTitle | translate }}
+            </h1>
+            <div class="p-grid">
+                <label for="inputIsActive" class="p-col-12 p-md-2">
+                    {{ 'SECURITY.MANAGEUSERS.FIELDS.ACTIVE' | translate }}
+                </label>
+                <div class="p-col-12 p-md-10">
+                    <p-checkbox id="inputIsActive"
+                                name="inputIsActive"
+                                [value]="'SECURITY.MANAGEUSERS.FIELDS.ACTIVE' | translate"
+                                [binary]="true"
+                                [(ngModel)]="user.isActive"></p-checkbox>
+                </div>
+                <label for="inputEmail" class="p-col-12 p-md-2">
+                    {{ 'SECURITY.MANAGEUSERS.FIELDS.EMAIL' | translate }}
+                </label>
+                <div class="p-col-12 p-md-10">
+                    <input pInputText
+                           id="inputEmail"
+                           name="inputEmail"
+                           type="email"
+                           required
+                           [disabled]="editMode"
+                           maxlength="128"
+                           [(ngModel)]="user.emailAddress" />
+                    <div class="mt-s">
+                        <p-message *ngIf="form.controls['inputEmail'] && !form.controls['inputEmail'].valid && form.controls['inputEmail'].touched"
+                                   severity="error"
+                                   [text]="'VALIDATION.FIELDREQUIRED' | translate"></p-message>
+                    </div>
+                </div>
+                <label for="inputFullName" class="p-col-12 p-md-2">
+                    {{ 'SECURITY.MANAGEUSERS.FIELDS.FULLNAME' | translate }}
+                </label>
+                <div class="p-col-12 p-md-10">
+                    <input pInputText
+                           id="inputFullName"
+                           name="inputFullName"
+                           type="text"
+                           required
+                           maxlength="256"
+                           [(ngModel)]="user.fullName" />
+                    <div class="mt-s">
+                        <p-message *ngIf="form.controls['inputFullName'] && !form.controls['inputFullName'].valid && form.controls['inputFullName'].touched"
+                                   severity="error"
+                                   [text]="'VALIDATION.FIELDREQUIRED' | translate"></p-message>
+                    </div>
+                </div>
+                <label [for]="'inputPhoneNumber'" class="p-col-12 p-md-2">
+                    {{ 'SECURITY.MANAGEUSERS.FIELDS.PHONENUMBER' | translate }}
+                </label>
+                <div class="p-col-12 p-md-2">
+                    <p-dropdown id="inputPhoneCode"
+                                name="inputPhoneCode"
+                                [options]="codeList"
+                                filter="true"
+                                showClear="true"
+                                placeholder="{{ 'GENERAL.SELECT' | translate }}"
+                                [(ngModel)]="user.phoneCode">
+                    </p-dropdown>
+                </div>
+                <div class="p-col-12 p-md-8">
+                    <p-inputMask inputId="inputPhoneNumber"
+                                 name="inputPhoneNumber"
+                                 [(ngModel)]="user.phoneNumber"
+                                 mask="999-999-9999"></p-inputMask>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="p-col-12" id="Section2">
+        <div class="card">
+            <h1>{{ 'SECURITY.MANAGEUSERS.FIELDS.LABORINFORMATION' | translate }}</h1>
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <div class="p-grid">
+                        <label for="inputTrackingHoursMandatory" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.TRACKINGHOURSMANDATORY' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <p-checkbox id="inputTrackingHoursMandatory"
+                                        name="inputTrackingHoursMandatory"
+                                        [value]="'SECURITY.MANAGEUSERS.FIELDS.TRACKINGHOURSMANDATORY' | translate"
+                                        [binary]="true"
+                                        [(ngModel)]="user.trackingHoursMandatory"></p-checkbox>
+                        </div>
+                        <label for="inputStartTime" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.STARTDATE' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <p-calendar [(ngModel)]="user.startDate"
+                                        required
+                                        inputId="inputStartTime"
+                                        name="inputStartTime"></p-calendar>
+                        </div>
+                        <label for="inputTitle" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.TITLE' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <input pInputText
+                                   id="inputTitle"
+                                   name="inputTitle"
+                                   type="text"
+                                   maxlength="256"
+                                   [(ngModel)]="user.title" />
+                        </div>
+                        <label for="inputLaborType" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.LABORTYPE' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <p-dropdown id="inputLaborType"
+                                        name="inputLaborType"
+                                        [options]="laborTypes"
+                                        placeholder="{{ 'GENERAL.SELECT' | translate }}"
+                                        [(ngModel)]="user.laborTypeId"></p-dropdown>
+                        </div>
+
+                        <label class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.DAYSSCHEDULE' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <p-checkbox *ngFor="let day of days; let i = index"
+                                        [id]="'inputDay' + i"
+                                        [name]="'inputDay' + i"
+                                        [value]="day.id"
+                                        labelStyleClass="mr"
+                                        [label]="day.name | translate"
+                                        (onChange)="onChangeDays()"
+                                        [binary]="true"
+                                        [(ngModel)]="day.checked"></p-checkbox>
+                        </div>
+                        <label for="inputTimeScheduleStart" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.TIMESCHEDULESTART' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <p-calendar [(ngModel)]="user.timeScheduleStart"
+                                        [timeOnly]="true"
+                                        inputId="inputTimeScheduleStart"
+                                        name="inputTimeScheduleStart"
+                                        (onBlur)="validateDates()"></p-calendar>
+                        </div>
+                        <label for="inputTimeScheduleEnd" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.TIMESCHEDULEEND' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <p-calendar [(ngModel)]="user.timeScheduleEnd"
+                                        [timeOnly]="true"
+                                        inputId="inputTimeScheduleEnd"
+                                        name="inputTimeScheduleEnd"
+                                        (onBlur)="validateDates()"></p-calendar>
+                            <div class="mt-s">
+                                <p-message *ngIf="!areDateRangesValid"
+                                           severity="error"
+                                           [text]="'VALIDATION.VALIDATIONDATES' | translate"></p-message>
+                            </div>
+                        </div>
+                        <label for="inputReportsTo" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.REPORTTO' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <p-dropdown id="inputReportsTo"
+                                        name="inputReporstTo"
+                                        [options]="users"
+                                        placeholder="{{ 'GENERAL.SELECT' | translate }}"
+                                        [(ngModel)]="user.reportsTo"></p-dropdown>
+                        </div>
+                        <label for="inputHoursPerWeek" class="p-col-12 p-md-2">
+                            {{ 'SECURITY.MANAGEUSERS.FIELDS.HOURSPERWEEK' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <input appNumberInput
+                                   id="inputHoursPerWeek"
+                                   name="inputHoursPerWeek"
+                                   class="ui-inputtext ui-widget"
+                                   type="text"
+                                   [min]="1"
+                                   [max]="168"
+                                   [maxlength]="3"
+                                   [decimals]="0"
+                                   format="0"
+                                   [disabled]="true"
+                                   [(ngModel)]="user.hoursPerWeek" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

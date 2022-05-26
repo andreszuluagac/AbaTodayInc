@@ -1,0 +1,26 @@
+.tool-button {
+    margin-right: 0.5em;
+}
+
+.num-filter-operator {
+    max-width: 50px;
+    margin-right: 2px;
+}
+
+@media screen and (min-width: 991px) {
+    .global-filter-txt {
+        position: absolute;
+        right: 48px;
+    }
+
+    .global-filter-btn {
+        position: absolute;
+        right: 16px;
+    }
+}
+
+@media screen and (max-width: 738px) {
+    .global-filter-txt {
+        max-width: 55%;
+    }
+}

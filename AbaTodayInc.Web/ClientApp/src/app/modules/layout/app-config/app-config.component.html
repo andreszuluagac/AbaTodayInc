@@ -1,0 +1,89 @@
+﻿<a href="#" class="layout-config-button" (click)="onConfigButtonClick($event)">
+    <i class="pi pi-cog"></i>
+</a>
+<div id="layout-config" class="layout-config" [ngClass]="{'layout-config-exit-done': !app.configDialogActive,
+        'layout-config-enter-done': app.configDialogActive}" [@children]="app.configDialogActive ? 'visibleAnimated' : 'hiddenAnimated'">
+    <div class="layout-config-content">
+        <a href="#" class="layout-config-close" (click)="onConfigCloseClick($event)">
+            <i class="pi pi-times"></i>
+        </a>
+        <p-tabView id="config-form-tabs">
+            <p-tabPanel header="Light or Dark">
+                <h1>Light or Dark</h1>
+
+                <div class="p-grid p-justify-center p-align-center">
+                    <div class="p-col p-col-fixed">
+                        <a href="#" class="layout-config-option layout-config-option-image" (click)="changeLayout($event, false)">
+                            <img src="assets/layout/images/configurator/choice-light.png" alt="mirage-layout" style="width:100%" />
+                            <span class="layout-config-option-text">Light</span>
+                            <i class="pi pi-check" *ngIf="!app.darkMode"></i>
+                        </a>
+                    </div>
+                    <div class="p-col p-col-fixed p-md-offset-1">
+                        <a href="#" class="layout-config-option layout-config-option-image" (click)="changeLayout($event, true)">
+                            <img src="assets/layout/images/configurator/choice-dark.png" alt="mirage-layout" style="width:100%" />
+                            <span class="layout-config-option-text">Dark</span>
+                            <i class="pi pi-check" *ngIf="app.darkMode"></i>
+                        </a>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Menu">
+                <div class="layout-config-subtitle">Mode</div>
+                <div class="p-grid">
+                    <div class="p-col p-col-fixed">
+                        <a href="#" class="layout-config-option layout-config-option-image"
+                           (click)="changeMenuToHorizontal($event,true)">
+                            <img src="assets/layout/images/configurator/menu/horizontal.png" alt="mirage-layout" style="width:100%" />
+                            <span class="layout-config-option-text">Horizontal</span>
+                            <i class="pi pi-check" *ngIf="app.horizontalMenu"></i>
+                        </a>
+                    </div>
+                    <div class="p-col p-col-fixed">
+                        <a href="#" class="layout-config-option layout-config-option-image"
+                           (click)="changeMenuToHorizontal($event,false)">
+                            <img src="assets/layout/images/configurator/menu/overlay.png" alt="mirage-layout" style="width:100%" />
+                            <span class="layout-config-option-text">Overlay</span>
+                            <i class="pi pi-check" *ngIf="!app.horizontalMenu"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="layout-config-subtitle">Color</div>
+                <div class="p-grid">
+                    <div class="p-col p-col-fixed" *ngFor="let menuColor of menuColors">
+                        <a href="#" class="layout-config-option layout-config-option-image"
+                           (click)="changeMenuColor($event,menuColor.name)">
+                            <img src="assets/layout/images/configurator/menu/{{menuColor.name}}.png" alt="{{menuColor.name}}" />
+                            <span class="layout-config-option-text">{{menuColor.name}}</span>
+                            <i class="pi pi-check" *ngIf="menuColor.name === app.menuColorMode"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="layout-config-subtitle">Theme</div>
+                <div class="p-grid">
+                    <div class="p-col p-col-fixed" *ngFor="let menuTheme of selectedColorOptions">
+                        <a href="#" class="layout-config-option layout-config-option-image layout-config-option-theme"
+                           (click)="changeMenuTheme($event,menuTheme.file)">
+                            <img src="assets/layout/images/configurator/menu/theme/{{menuTheme.image}}" alt="{{menuTheme.name}}" />
+                            <i class="pi pi-check" *ngIf="app.menuColorMode === 'custom' && 'layout-menu-'+menuTheme.file === app.menuColor"></i>
+                            <i class="pi pi-check" *ngIf="app.menuColorMode !== 'custom' && menuTheme.file === app.layoutColor"></i>
+                        </a>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Components">
+                <div class="p-grid">
+                    <div class="p-col p-col-fixed" *ngFor="let componentTheme of componentThemes">
+                        <a href="#" class="layout-config-option layout-config-option-image layout-config-option-theme"
+                           (click)="changeComponentTheme($event,componentTheme.file)">
+                            <img src="assets/layout/images/configurator/theme/{{componentTheme.image}}" alt="{{componentTheme.name}}" />
+                            <i class="pi pi-check" *ngIf="componentTheme.file === app.themeColor"></i>
+                        </a>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

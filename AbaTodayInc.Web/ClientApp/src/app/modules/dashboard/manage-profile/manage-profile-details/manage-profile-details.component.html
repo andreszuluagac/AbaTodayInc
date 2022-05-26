@@ -1,0 +1,22 @@
+<div class="ui-fluid" *ngFor="let action of actionsRole">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div class="card">
+                <div class="p-grid striped">
+                    <div class="p-col-12 p-md-2">
+                        <span class="text-black-50">{{ 'ACCOUNT.MANAGEPROFILE.FIELDS.MODULENAME' | translate }}</span>
+                    </div>
+                    <div class="p-col-12 p-md-4">
+                        <span>{{ action.moduleName }}</span>
+                    </div>
+                    <div class="p-col-12 p-md-2">
+                        <span class="text-black-50">{{ 'ACCOUNT.MANAGEPROFILE.FIELDS.ACTIONNAME' | translate }}</span>
+                    </div>
+                    <div class="p-col-12 p-md-4">
+                        <span>{{ action.actionName }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

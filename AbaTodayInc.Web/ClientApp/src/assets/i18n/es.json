@@ -1,0 +1,241 @@
+{
+	"ACCOUNT": {
+		"LOGIN": {
+			"CLICKHERE": "Haga clic aquí para ingresar",
+			"DATANOTVALID": "Los datos de inicio de sesión no son válidos.",
+			"EMAILNOTCONFIRMED": "El correo electrónico no ha sido confirmado. Revise su bandeja de entrada para continuar.",
+			"FIELDS": {
+				"EMAIL": "Correo electrónico",
+				"FORGOT": "¿Olvidaste tu contraseña?",
+				"LANGUAGE": "Idioma",
+				"LOGIN": "Iniciar sesión",
+				"PASSWORD": "Contraseña",
+				"REGISTER": "Crea una cuenta",
+				"REMEMBER": "Recuérdame",
+				"WELCOME": "Bienvenido a AbaToday"
+			},
+			"LOGINUNSUCCESSFUL": "Inicio de sesión no fue exitoso",
+			"PAGETITLE": "Iniciar sesión"
+		},
+		"LOGOUT": "Cerrar sesión",
+		"MANAGEPROFILE": {
+			"FIELDS": {
+				"ACTIONNAME": "Nombre de acción",
+				"CANCELCHANGEPASSWORD": "Cancelar cambio de contraseña",
+				"CHANGEPASSWORD": "Cambia la contraseña",
+				"CHOOSEPHOTO": "Escoge una foto",
+				"CONFIRMPASSWORD": "Confirmar contraseña",
+				"CURRENTPASSWORD": "Contraseña actual",
+				"EMAIL": "Email",
+				"FULLNAME": "Nombre completo",
+				"INVALIDPASSWORD": "Contraseña invalida",
+				"MODULENAME": "Nombre del módulo",
+				"NEWPASSWORD": "Nueva contraseña",
+				"NOACTIONS": "No hay acciones asociadas al rol",
+				"PASSWORD": "Contraseña",
+				"PHONENUMBER": "Número de teléfono",
+				"PROFILEIMAGE": "Imagen de perfil",
+				"ROLES": "Roles"
+			},
+			"PAGETITLE": "Administrar perfil"
+		},
+		"PASSWORDMISMATCH": "La contraseña y la confirmación no coinciden.",
+		"PASSWORDREQUIRESDIGIT": "Las contraseñas deben tener al menos un dígito ('0' - '9').",
+		"PASSWORDREQUIRESNONALPHANUMERIC": "Las contraseñas deben tener al menos un carácter que no es alfanumérico.",
+		"PASSWORDTOOSHORT": "Las contraseñas deben tener al menos 6 caracteres.",
+		"REGISTER": {
+			"ACCOUNTCREATED": "¡Su cuenta ha sido creada éxitosamente!",
+			"CHECKEMAIL": "Se le ha enviado un correo electrónico a su bandeja de entrada con instrucciones sobre cómo activar su cuenta.",
+			"CONFIRMATIONERROR": "La confirmación de la contraseña debe coincidir con la contraseña",
+			"EMAILCONFIRMED": "Su correo electrónico ha sido confirmado éxitosamente.",
+			"FIELDS": {
+				"CONFIRMPASSWORD": "Confirmar contraseña",
+				"EMAIL": "E-mail",
+				"FORGOT": "¿Se te olvidó tu contraseña?",
+				"FULLNAME": "Nombre completo",
+				"LOGIN": "Iniciar sesión",
+				"PASSWORD": "Contraseña",
+				"PHONENUMBER": "Número telefonico",
+				"REGISTER": "Registro"
+			},
+			"PAGETITLE": "Crear una nueva cuenta de AbaToday",
+			"SUBSCRIBE": "Suscribirse a AbaToday"
+		},
+		"RESTOREPASSWORD": {
+			"EMAILSENT": "Se le ha enviado un correo electrónico con instrucciones sobre cómo restablecer su contraseña.",
+			"FIELDS": {
+				"CONFIRMNEWPASSWORD": "Confirmar nueva contraseña",
+				"NEWPASSWORD": "Nueva contraseña",
+				"SETPASSWORD": "Establecer nueva contraseña"
+			},
+			"MESSAGERESTORE": "Ingrese la cuenta de correo electrónico asociada a su cuenta del sistema",
+			"PAGETITLE": "Restaurar contraseña",
+			"SENDEMAIL": "Enviar correo electrónico"
+		}
+	},
+	"DASHBOARD": {
+		"PAGETITLE": "Panel de control",
+		"PAGETITLECUSTOMER": "Clientes"
+	},
+	"GENERAL": {
+		"ACTIONS": "Acciones",
+		"ADDNEW": "Añadir nuevo",
+		"ALLRECORDS": "Todos los registros",
+		"CANCEL": "Cancelar",
+		"CANNOTDELETE": "El registro no se puede eliminar porque tiene datos relacionados.",
+		"CHOOSECOLUMNS": "Elegir columnas",
+		"CONFIRMATION": "Confirmar acción",
+		"CONFIRMCHANGELANGUAGE": "Cambiar el idioma de la aplicación hará que la página se actualice. ¿Estás seguro de que quieres continuar?",
+		"CONFIRMDELETE": "¿Estás seguro de que deseas eliminar este registro? Esta operación no se puede deshacer.",
+		"CONTACTUS": {
+			"EMAIL": "Correo Electrónico",
+			"MESSAGE": "Mensaje",
+			"NAME": "Nombre",
+			"RECEIVED": "{0} quiere ponerse en contacto con AbaToday Inc., tienes un mensaje nuevo",
+			"SEND": "Enviar",
+			"SENT": "Mensaje Enviado",
+			"TITLE": "Contáctenos",
+			"TYPEEMAIL": "Escriba su correo electrónico ...",
+			"TYPEMESSAGE": "Escribe tu mensaje...",
+			"TYPEUSERNAME": "Escriba su nombre de usuario ..."
+		},
+		"CONTINUE": "Continuar",
+		"COPIED": "¡Copiado!",
+		"COPYTOCLIPBOARD": "Copiar al portapapeles",
+		"COUNTRYCODE": "País...",
+		"DASHBOARD": "Tablero",
+		"DATAERROR": "No se pudieron recuperar los registros de la base de datos. Consulte la consola del navegador para obtener más información.",
+		"DELETE": "Borrar",
+		"DELETED": "Registro eliminado exitosamente.",
+		"DETAILS": "Detalles",
+		"EDIT": "Editar",
+		"FILTER": "Filtrar datos ...",
+		"FROM": "Desde",
+		"GENERALERROR": "Uno o más errores ocurrieron. Consulte la consola del navegador para obtener más información.",
+		"GLOBALFILTER": "Filtro global",
+		"IDENTIFIEREXIST": "El identificador de la ubicación ya existe. Ingrese otro para continuar",
+		"INACTIVE": "No activo",
+		"ITEMRATEBILLINGDOCUMENTRELATED": "La tarifa del artículo tiene un documento de facturación relacionado",
+		"ITEMRATEDUPLICATED": "La tarifa del artículo ya existe",
+		"NO": "No",
+		"NODATA": "No se encontraron registros.",
+		"NOTAUTHORIZED": "No estás autorizado para realizar esta acción.",
+		"PENDINGCYCLECOUNTS": "Recuentos de ciclos pendientes",
+		"RENAME": "Rebautizar",
+		"REVERTCHANGES": "saltar atrás los cambios",
+		"SAVECHANGES": "Guardar cambios",
+		"SAVESUCCESSFUL": "Los cambios se guardaron exitosamente.",
+		"SEARCHFOR": "Buscar...",
+		"SELECT": "Seleccionar...",
+		"SINGLELOTCODEVALID": "La ubicación del contenedor tiene diferentes códigos de lote, no es posible seleccionar esta opción",
+		"SINGLEPRODUCTVALID": "La ubicación del contenedor tiene diferentes productos, no es posible seleccionar esta opción",
+		"SUCCESS": "Éxito",
+		"SYSTEMCREATED": "Creado por el sistema",
+		"TODAY": "Hoy",
+		"TOMORROW": "Mañana",
+		"UNSAVEDCHANGES": "¡Tienes cambios que no están guardados! Si te vas, tus cambios se perderán.",
+		"UPDATE": "Actualizar",
+		"UPLOADIMAGE": "Subir foto",
+		"USERCREATED": "Creado por el usuario",
+		"VIEWCHILDREN": "Ver hijos",
+		"WELCOME": "Sitio actual: {{sites}} - Empresas actuales: {{businesses}}",
+		"YES": "Sí",
+		"YESTERDAY": "Ayer"
+	},
+	"LABS": {
+		"3D": "3D",
+		"NAVTITLE": "LogicLabs"
+	},
+	"SECURITY": {
+		"MANAGEROLES": {
+			"ADD": {
+				"CREATE": "Crear rol",
+				"PAGETITLE": "Agregar nuevo rol"
+			},
+			"EDIT": {
+				"PAGETITLE": "Editar rol"
+			},
+			"FIELDS": {
+				"ACTIVE": "¿Activo?",
+				"DESCRIPTION": "Descripción",
+				"NAME": "Nombre",
+				"SUBSCRIPTIONADMIN": "¿Administrador de la suscripción?"
+			},
+			"LIST": {
+				"CONFIRMDELETE": "¿Está seguro de que desea eliminar este rol? Esta operación no se puede deshacer.",
+				"PAGETITLE": "Gestionar roles"
+			},
+			"NAVTITLE": "Gestionar roles"
+		},
+		"MANAGEROLESACTIONS": {
+			"FIELDS": {
+				"ACTIONS": "Acciones disponibles",
+				"ACTIONSSELECTED": "Acciones seleccionadas por rol",
+				"SELECTMODULES": "Seleccionar Modulo",
+				"SELECTROLES": "Seleccionar rol"
+			},
+			"NAVTITLE": "Gestionar acciones de rol"
+		},
+		"MANAGEUSERS": {
+			"ADD": {
+				"CREATE": "Crear usuario",
+				"PAGETITLE": "Añadir nuevo usuario"
+			},
+			"BREAKTYPE": {
+				"FIELDS": {
+					"AFTERNOON": "Tarde",
+					"LUNCH": "Almuerzo",
+					"MORNING": "mañana",
+					"NIGTH": "Noche"
+				}
+			},
+			"EDIT": {
+				"PAGETITLE": "Editar usuario"
+			},
+			"FIELDS": {
+				"ACTIVE": "¿Activo?",
+				"DAYSSCHEDULE": "Horario de días",
+				"EMAIL": "Dirección de correo electrónico",
+				"FULLNAME": "Nombre completo",
+				"HOURSPERWEEK": "Horas por semana",
+				"LABORINFORMATION": "Información Laboral",
+				"LABORTYPE": "Tipo de trabajo",
+				"PHONENUMBER": "Número de teléfono",
+				"REPORTTO": "Reporta a",
+				"STARTDATE": "Fecha de inicio",
+				"TIMESCHEDULEEND": "Fin del horario",
+				"TIMESCHEDULESTART": "Hora de inicio del programa",
+				"TITLE": "Título",
+				"TRACKINGHOURSMANDATORY": "Horas de seguimiento obligatorio"
+			},
+			"LABORTYPE": {
+				"FIELDS": {
+					"HOURLY": "Cada hora",
+					"SALARY": "Salario"
+				},
+				"NAVTITLE": "Tipo de trabajo"
+			},
+			"LIST": {
+				"CONFIRMDELETE": "¿Seguro que quieres eliminar a este Usuario? Esta operación no se puede deshacer.",
+				"PAGETITLE": "Administrar usuarios"
+			},
+			"NAVTITLE": "Administrar usuarios",
+			"PAGETITLE": "Administrar Usuarios"
+		},
+		"MANAGEUSERSBYROL": {
+			"FIELDS": {
+				"SELECTROLES": "Seleccionar Rol",
+				"USERS": "Usuarios disponibles",
+				"USERSSELECTED": "Usuarios seleccionados por rol"
+			},
+			"NAVTITLE": "Gestionar usuarios por Rol"
+		},
+		"NAVTITLE": "Seguridad"
+	},
+	"VALIDATION": {
+		"FIELDREQUIRED": "Se requiere un valor para este campo.",
+		"QUANTITY": "La cantidad debe ser igual o menor a la cantidad actual",
+		"VALIDATIONDATES": "Esta fecha debe ser mayor a la fecha inicial",
+		"VALIDATIONTIMES": "Este tiempo debe ser mayor que el tiempo inicial."
+	}
+}

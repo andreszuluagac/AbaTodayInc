@@ -1,0 +1,15 @@
+﻿.ui-dialog .ui-dialog-content {
+    background-color: #eceff4 !important;
+}
+
+.striped:nth-child(even) {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.selected-row {
+    background-color: #c7ebf1 !important;
+}
+
+.bg-light-gray {
+    background-color: #eeeeee !important;
+}

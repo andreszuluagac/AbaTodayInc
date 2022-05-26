@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="AbaTodayInc.Repos.csproj.vspscc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AbaTodayInc.DataAccess\AbaTodayInc.DataAccess.csproj" />
+    <ProjectReference Include="..\AbaTodayInc.Domain\AbaTodayInc.Domain.csproj" />
+    <ProjectReference Include="..\AbaTodayInc.Helpers\AbaTodayInc.Helpers.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,174 @@
+<p-toast position="top-right"></p-toast>
+<div class="ui-fluid">
+    <form #manageProfileForm="ngForm">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <div class="card">
+                    <h1>
+                        <i *ngIf="isLoading" class="fas fa-fw fa-sync fa-spin"></i>
+                        <i *ngIf="!isLoading" class="fas fa-fw fa-map-marker-alt"></i>
+                        {{ 'ACCOUNT.MANAGEPROFILE.PAGETITLE' | translate }}
+                    </h1>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-2">
+                            <img class="product-image-detail"
+                                 alt="Element Image"
+                                 [src]="profile.image ? this.profile.image : 'assets/img/no-image.png'" />
+                            <input #file
+                                   id="inputImage"
+                                   name="inputImage"
+                                   type="file"
+                                   style="display: none;"
+                                   accept="image/*"
+                                   required
+                                   (change)="updateFile(file.files[0].name)">
+                        </div>
+                        <div class="p-col-12 p-md-3 ml">
+                            <button pButton
+                                    type="button"
+                                    icon="pi pi-file"
+                                    label="{{ 'ACCOUNT.MANAGEPROFILE.FIELDS.CHOOSEPHOTO' | translate }}"
+                                    class="ui-button-primary mb"
+                                    (click)="file.click()"></button>
+                            <div *ngIf="file.files && file.files[0]" class="mb">
+                                <span>{{ fileName }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-12">
+                <div class="card">
+                    <div class="p-grid">
+                        <label for="inputSite" class="p-col-12 p-md-2">
+                            {{ ('ACCOUNT.MANAGEPROFILE.FIELDS.FULLNAME' | translate) }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <input pInputText
+                                   id="inputFullName"
+                                   name="inputFullName"
+                                   type="text"
+                                   required
+                                   placeholder="{{ 'ACCOUNT.MANAGEPROFILE.FIELDS.FULLNAME' | translate }}"
+                                   maxlength="128"
+                                   [(ngModel)]="profile.fullName" />
+                            <!--<div class="mt-s">
+            <p-message *ngIf="form.controls['inputFullName'] && !form.controls['inputFullName'].valid && form.controls['inputFullName'].touched"
+                       severity="error"
+                       [text]="'VALIDATION.FIELDREQUIRED' | translate"></p-message>
+        </div>-->
+                        </div>
+                        <label for="inputPhoneNumber" class="p-col-12 p-md-2">
+                            {{ 'ACCOUNT.MANAGEPROFILE.FIELDS.PHONENUMBER' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-2">
+                            <p-dropdown id="inputCode"
+                                        name="inputCode"
+                                        [options]="codeList"
+                                        filter="true"
+                                        showClear="true"
+                                        placeholder="{{ 'GENERAL.COUNTRYCODE' | translate }}"
+                                        [(ngModel)]="profile.phoneNumberCode">
+                            </p-dropdown>
+                        </div>
+                        <div class="p-col-12 p-md-8">
+                            <p-inputMask inputId="inputPhoneNumber"
+                                         name="inputPhoneNumber"
+                                         [(ngModel)]="profile.phoneNumber"
+                                         mask="999-999-9999"></p-inputMask>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-12">
+                <p-panel header="{{ 'ACCOUNT.MANAGEPROFILE.FIELDS.ROLES' | translate }}" [toggleable]="false">
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-12">
+                            <a *ngFor="let role of profile.roles"
+                               class="click-link"
+                               (click)="viewDetails(role)">
+                                {{ role }}
+                            </a>
+                        </div>
+
+                    </div>
+                </p-panel>
+            </div>
+            <div class="p-col-12 p-md-12">
+                <p-panel header="{{ 'ACCOUNT.MANAGEPROFILE.FIELDS.CHANGEPASSWORD' | translate }}" [toggleable]="false">
+                    <ul *ngIf="errors" class="text-danger">
+                        <li *ngFor="let error of errors">
+                            {{ error | translate  }}
+                        </li>
+                    </ul>
+                    <div class="p-grid">
+                        <label for="inputCurrentPassword" class="p-col-12 p-md-2">
+                            {{ 'ACCOUNT.MANAGEPROFILE.FIELDS.CURRENTPASSWORD' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <input pPassword
+                                   class="form-control"
+                                   id="inputCurrentPassword"
+                                   name="inputCurrentPassword"
+                                   type="password"
+                                   maxlength="128"
+                                   [required]="profile.password"
+                                   (change)="changePassword()"
+                                   [(ngModel)]="profile.password" />
+                        </div>
+                        <label for="inputNewPassword" class="p-col-12 p-md-2">
+                            {{ 'ACCOUNT.MANAGEPROFILE.FIELDS.NEWPASSWORD' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <input pPassword
+                                   id="inputNewPassword"
+                                   name="inputNewPassword"
+                                   type="password"
+                                   [required]="profile.password"
+                                   [disabled]="!profile.password"
+                                   maxlength="128"
+                                   [(ngModel)]="profile.newPassword" />
+                        </div>
+                        <label for="inputConfirmPassword" class="p-col-12 p-md-2">
+                            {{ 'ACCOUNT.MANAGEPROFILE.FIELDS.CONFIRMPASSWORD' | translate }}
+                        </label>
+                        <div class="p-col-12 p-md-10">
+                            <input pPassword
+                                   class="form-control"
+                                   id="inputConfirmPassword"
+                                   name="inputConfirmPassword"
+                                   type="password"
+                                   [required]="profile.password"
+                                   [disabled]="!profile.password"
+                                   maxlength="128"
+                                   [(ngModel)]="profile.confirmPassword" />
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+            <div class="p-col-12">
+                <div class="card">
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-offset-6 p-md-3">
+                            <button pButton
+                                    type="button"
+                                    icon="pi pi-check"
+                                    label="{{ 'GENERAL.SAVECHANGES' | translate }}"
+                                    [disabled]="!manageProfileForm.form.valid || isLoading || (profile.newPassword != profile.confirmPassword)"
+                                    (click)="updateManageProfile(file.files)"></button>
+                        </div>
+                        <div class="p-col-12 p-md-3">
+                            <button pButton
+                                    type="button"
+                                    icon="pi pi-undo"
+                                    label="{{ 'GENERAL.CANCEL' | translate }}"
+                                    class="ui-button-secondary"
+                                    (click)="goBack()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

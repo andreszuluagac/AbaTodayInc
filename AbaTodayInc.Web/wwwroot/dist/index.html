@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AbaToday</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link id="theme-css" rel="stylesheet" type="text/css" href="assets/theme/blue/theme-light.css">
+    <link id="layout-css" rel="stylesheet" type="text/css" href="assets/layout/css/blue/layout-light.css">
+    <link id="custom-css" rel="stylesheet" type="text/css" href="assets/custom-light.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+<link rel="stylesheet" href="styles.8f3cb84c31ced5b746be.css"></head>
+<body>
+    <app-root>
+        <div class="splash-screen">
+            <div class="spinner">
+                <span class="ball-1"></span>
+                <span class="ball-2"></span>
+                <span class="ball-3"></span>
+                <span class="ball-4"></span>
+                <span class="ball-5"></span>
+                <span class="ball-6"></span>
+                <span class="ball-7"></span>
+                <span class="ball-8"></span>
+            </div>
+        </div>
+    </app-root>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"
+            type="text/javascript" charset="utf-8"></script>
+    <script>
+        //Remove ghost preview when dragging, by using an empty, transparent image.
+        document.addEventListener("dragstart", function (event) {
+            //console.log("Dragging!");
+            var img = new Image();
+            img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+            event.dataTransfer.setDragImage(img, 0, 0);
+        }, false);
+    </script>
+<script src="runtime-es2015.330da10f8d6e5d206983.js" type="module"></script><script src="runtime-es5.330da10f8d6e5d206983.js" nomodule defer></script><script src="polyfills-es5.3edf784791a6c601f419.js" nomodule defer></script><script src="polyfills-es2015.49b0ec2408e688511d8e.js" type="module"></script><script src="scripts.32f2c6d53880a1bff280.js" defer></script><script src="main-es2015.4ce74d40e86191291993.js" type="module"></script><script src="main-es5.4ce74d40e86191291993.js" nomodule defer></script></body>
+</html>

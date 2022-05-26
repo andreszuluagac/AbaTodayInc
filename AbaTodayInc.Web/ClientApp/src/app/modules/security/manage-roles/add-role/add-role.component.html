@@ -1,0 +1,35 @@
+<p-toast position="top-right"></p-toast>
+<div class="ui-fluid">
+    <form #newRole="ngForm">
+        <div class="p-grid">
+            <div class="p-col-12" >
+                <app-role-form [role]="role" 
+                               [form]="newRole" 
+                               [isLoading]="isLoading"
+                               pageTitle="SECURITY.MANAGEROLES.ADD.CREATE"></app-role-form>
+            </div>
+            <div class="p-col-12" id="SectionSave">
+                <div class="card">
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-offset-6 p-md-3">
+                            <button pButton
+                                    type="button"
+                                    icon="pi pi-check"
+                                    label="{{ 'SECURITY.MANAGEROLES.ADD.CREATE' | translate }}"
+                                    [disabled]="!newRole.form.valid || isLoading"
+                                    (click)="createRole()"></button>
+                        </div>
+                        <div class="p-col-12 p-md-3">
+                            <button pButton
+                                    type="button"
+                                    icon="pi pi-undo"
+                                    label="{{ 'GENERAL.CANCEL' | translate }}"
+                                    class="ui-button-secondary"
+                                    (click)="goBack()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

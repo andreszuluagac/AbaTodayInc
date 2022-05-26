@@ -1,0 +1,125 @@
+<p-toast position="top-right"></p-toast>
+<div class="login-body" [ngClass]="{'layout-dark': dark, 'layout-light': !dark}">
+    <div class="login-content">
+        <div class="night-switch">
+            <p-button styleClass="dark-switch" icon="pi pi-circle-on" (click)="changeDark(true)"></p-button>
+            <p-button styleClass="light-switch" icon="pi pi-circle-off" (click)="changeDark(false)"></p-button>
+        </div>
+        <div class="login-panel">
+            <div class="login-panel-content">
+                <div class="logo">
+                    <img src="assets/img/logo-2.png" alt="AbaToday Logo" />
+                </div>
+                <h1>{{ 'ACCOUNT.REGISTER.PAGETITLE' | translate }}</h1>
+                <ul *ngIf="errors" class="text-danger">
+                    <li *ngFor="let error of errors">
+                        {{ error | translate  }}
+                    </li>
+                </ul>
+                <div *ngIf="userRegistered">
+                    <p-message severity="success"
+                               [text]="'ACCOUNT.REGISTER.ACCOUNTCREATED' | translate"></p-message>
+                    <p>{{ 'ACCOUNT.REGISTER.CHECKEMAIL' | translate }}</p>
+                </div>
+                <div *ngIf="!userRegistered">
+                    <form #registerForm="ngForm">
+                        <div class="forms">
+                            <div class="login-input-wrapper">
+                                <label for="inputEmail">{{ 'ACCOUNT.REGISTER.FIELDS.EMAIL' | translate }}</label>
+                                <input pInputText
+                                       id="inputEmail"
+                                       name="inputEmail"
+                                       type="email"
+                                       required
+                                       [placeholder]="'ACCOUNT.REGISTER.FIELDS.EMAIL' | translate"
+                                       maxlength="128"
+                                       [(ngModel)]="register.emailAddress" />
+                                <i class="pi pi-envelope"></i>
+                            </div>
+                            <div class="login-input-wrapper">
+                                <label for="inputFullName">{{ 'ACCOUNT.REGISTER.FIELDS.FULLNAME' | translate }}</label>
+                                <input pInputText
+                                       id="inputFullName"
+                                       name="inputFullName"
+                                       required
+                                       [placeholder]="'ACCOUNT.REGISTER.FIELDS.FULLNAME' | translate"
+                                       maxlength="256"
+                                       [(ngModel)]="register.fullName" />
+                                <i class="pi pi-user"></i>
+                            </div>
+                            <div class="login-input-wrapper">
+                                <label [for]="'inputPhoneNumber'">{{ 'ACCOUNT.REGISTER.FIELDS.PHONENUMBER' | translate }}</label>
+                                <div class="p-grid mb-0">
+                                    <div class="p-col-12 p-md-6">
+                                        <p-dropdown id="inputCode"
+                                                    name="inputCode"
+                                                    [options]="codeList"
+                                                    filter="true"
+                                                    showClear="true"
+                                                    placeholder="{{ 'GENERAL.COUNTRYCODE' | translate }}"
+                                                    [(ngModel)]="register.phoneNumberCode">
+                                        </p-dropdown>
+                                    </div>
+                                    <div class="p-col-12 p-md-6">
+                                        <p-inputMask inputId="inputPhoneNumber"
+                                                     name="inputPhoneNumber"
+                                                     [placeholder]="'ACCOUNT.REGISTER.FIELDS.PHONENUMBER' | translate"
+                                                     [(ngModel)]="register.phoneNumber"
+                                                     mask="999-999-9999"></p-inputMask>
+                                        <i class="pi pi-mobile"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="login-input-wrapper">
+                                <label for="inputPassword">{{ 'ACCOUNT.REGISTER.FIELDS.PASSWORD' | translate }}</label>
+                                <input pPassword
+                                       type="password"
+                                       id="inputPassword"
+                                       name="inputPassword"
+                                       required
+                                       [placeholder]="'ACCOUNT.REGISTER.FIELDS.PASSWORD' | translate"
+                                       [feedback]="true"
+                                       maxlength="128"
+                                       [(ngModel)]="register.password" />
+                                <i class="pi pi-lock"></i>
+                            </div>
+                            <div class="login-input-wrapper">
+                                <label for="inputConfirmPassword">{{ 'ACCOUNT.REGISTER.FIELDS.CONFIRMPASSWORD' | translate }}</label>
+                                <input pPassword
+                                       type="password"
+                                       id="inputConfirmPassword"
+                                       name="inputConfirmPassword"
+                                       required
+                                       [placeholder]="'ACCOUNT.REGISTER.FIELDS.CONFIRMPASSWORD' | translate"
+                                       [feedback]="true"
+                                       maxlength="128"
+                                       [(ngModel)]="register.confirmPassword" />
+                                <i class="pi pi-lock"></i>
+                                <div class="mt-s">
+                                    <p-message *ngIf="register.password != register.confirmPassword"
+                                               severity="error"
+                                               [text]="'ACCOUNT.REGISTER.CONFIRMATIONERROR' | translate"></p-message>
+                                </div>
+                            </div>
+                            <div class="buttons">
+                                <button pButton
+                                        type="button"
+                                        [disabled]="!registerForm.form.valid || isLoading || register.password != register.confirmPassword"
+                                        (click)="doRegister()"
+                                        [label]="'ACCOUNT.REGISTER.FIELDS.REGISTER' | translate"></button>
+                                <a class="secondary-button" [routerLink]="['/account/forgotPassword']">
+                                    {{ 'ACCOUNT.LOGIN.FIELDS.FORGOT' | translate }}
+                                </a>
+                                <a class="secondary-button" [routerLink]="['/account/login']">
+                                    {{ 'ACCOUNT.REGISTER.FIELDS.LOGIN' | translate }}
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="desert"></div>
+    </div>
+</div>

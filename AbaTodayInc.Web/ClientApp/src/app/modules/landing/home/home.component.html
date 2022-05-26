@@ -1,0 +1,408 @@
+﻿<p-toast position="top-right"></p-toast>
+<div class="landing-body">
+    <div class="landing-nav-menu">
+        <div class="logo">
+            <a routerLink="/">
+                <img src="assets/img/ABA.png" alt="AbaToday Inc." />
+                <span class="app-name">AbaToday</span>
+            </a>
+        </div>
+        <div class="nav-menu-wrapper">
+            <ul class="nav-menu" id="landing-menu">
+                <li class="active-link">
+                    <a href="#about">About us</a>
+                </li>
+                <li>
+                    <a href="#services">Services</a>
+                </li>
+                <li>
+                    <a href="#">Pricing</a>
+                </li>
+                <li>
+                    <a href="#contactUs">Contact Us</a>
+                </li>
+                <li class="active-link">
+                    <a routerLink="/account/register">{{ 'ACCOUNT.REGISTER.SUBSCRIBE' | translate }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-fixed buy-button">
+                <button type="button"
+                        class="ui-button ui-widget ui-corner-all ui-button-text-only"
+                        (click)="navigateToDashboard()">
+                    <span class="ui-button-text">
+                        <i class="pi pi-home"></i>
+                        {{ 'DASHBOARD.PAGETITLE' | translate }}
+                    </span>
+                </button>
+            </div>
+            <div class="p-col-fixed customer-button">
+                <button type="button"
+                        class="ui-button ui-widget ui-corner-all ui-button-text-only"
+                        (click)="navigateToDashboard()">
+                    <span class="ui-button-text">
+                        <i class="fas fa-user-tie"></i>
+                        {{ 'DASHBOARD.PAGETITLECUSTOMER' | translate }}
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="menu-button">
+            <a href="#" class="landing-menu-button" id="landing-menu-button">
+                <div class="landing-menu-button-icon"></div>
+            </a>
+        </div>
+    </div>
+    <div id="home" class="landing-header-wrapper">
+        <div>
+            <img src="assets/img/main-image.jpg" alt="AbaToday" style="width:100%" />
+        </div>
+        <div class="landing-header-content">
+            <h1>ABAToday Inc</h1>
+            <p>"The owner of this company gives the glory and honor to his Lord and Savior Jesus Christ."</p>
+            <!--<div class="video-button">
+                <button>Watch Video</button>
+            </div>-->
+        </div>
+        <!--<div class="tree">
+            <img src="assets/layout/images/pages/landing/asset-palm.svg" alt="AbaToday" />
+        </div>-->
+    </div>
+    <div id="meet-mirage" class="section">
+        <div class="section-title">
+            <h1>Meet AbaToday</h1>
+            <p>Applied Behavior Analysis Today Inc</p>
+        </div>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <div class="feature-card-img">
+                    <img src="assets/layout/images/pages/landing/asset-responsivelayout.svg" alt="AbaToday" />
+                </div>
+                <div class="feature-card-title">Social skills</div>
+                <div class="feature-card-content">Feature subtitle sentence. Lorem ipsum dolor sit amet.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-img">
+                    <img src="assets/layout/images/pages/landing/asset-moderndesign.svg" alt="AbaToday" />
+                </div>
+                <div class="feature-card-title">Learning skills</div>
+                <div class="feature-card-content">Feature subtitle sentence. Lorem ipsum dolor sit amet.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-img">
+                    <img src="assets/layout/images/pages/landing/asset-welldocumented.svg" alt="AbaToday" />
+                </div>
+                <div class="feature-card-title">Community Skills</div>
+                <div class="feature-card-content">Feature subtitle sentence. Lorem ipsum dolor sit amet.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-card-img">
+                    <img src="assets/layout/images/pages/landing/asset-unlimited.svg" alt="AbaToday" />
+                </div>
+                <div class="feature-card-title">Online Consulting services</div>
+                <div class="feature-card-content">Feature subtitle sentence. Lorem ipsum dolor sit amet.</div>
+            </div>
+        </div>
+
+        <div class="buy-mirage-promo-wrapper">
+            <div class="buy-mirage-promo">
+                <div class="promo-content">
+                    <h1>Join AbaToday now...</h1>
+                    <p align="justify">
+                        ABA TODAY is committed to using Applied Behavior Analysis services in order to provide excellent treatment to individuals with Autistic and other developmental disorders in Miami-Dade County.
+                        Our goal is to produce radical changes that significantly increase and improves clients' welfare.
+                        We specialize in language acquisition, social skills, increase level of independence, functional living skills, learning skills, community and school skills across settings, behaviors and individuals.
+                        We use least restrictive treatment with the main objective of applying positive reinforcement controlling strategies.
+                        We provide ABA services in the comfort of your own home, in the community around the clients' activities as well as in the school environment if necessary.
+                        We work with caregivers in order to transfer instructional control, achieve greater results and improve the overall quality of life for the client.
+                    </p>
+                </div>
+                <div class="promo-button">
+                    <button onclick="location.href='#contactUs'">{{ 'GENERAL.CONTACTUS.TITLE' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="features" class="section">
+        <div class="features-img">
+            <img src="assets/layout/images/pages/landing/feature-image-2@2x.png" alt="AbaToday" />
+        </div>
+        <div class="features-content">
+            <div class="features-rows">
+                <div class="features-row">
+                    <div class="features-row-icon">
+                        <div class="feature first"></div>
+                    </div>
+                    <div id="about" class="features-row-content">
+                        <h3>ABOUT US</h3>
+                        <span align="justify">
+                            Jorge Menendez, our CEO and President, started working as a behavior technician in January of 2010 and his first case was a 6 year old boy who was non-vocal and exhibited a great number of problem behaviors such as task refusal, elopement, vocal and motor stereotypy, tantrums, severe food refusal, and would not communicate using words but only pointing and grabbing people by their arms. This was Jorge's first client and he was impacted by the lack of skills and the amount and severity of problem behaviors exhibited by this client. Mr. Menendez then started applying ABA consistently and with Excellency, focusing on the present and "what can I teach my client TODAY". Using positive reinforcement controlling strategies, and studying the scientific literature as well as applying the instructions of his supervisors, Jorge started to notice that this 6 year old boy who never had spoken (even though the client had been on several kinds of therapies and agencies since he was 2 years old) gradually started to communicate effectively first using sign language, then words and then sentences. This same client had severe food refusal where he could not eat a wide variety of foods. Jorge also introduced one food day by day and gradually increased the number of foods and textures and his client now eats almost all kinds of foods.
+                            It was then when our CEO decided to pursue a career in ABA and became an assistant behavior analyst (BCaBA) where he conducted quality assurance across staff and clients for 2 years while he worked on his Master degree in Psychology with concentration in ABA.
+                            Once Jorge obtained his master's degree he took and passed the BACB exam the first time and became a Board Certified Behavior Analyst (BCBA) since 2013 until now.
+                            Jorge then decided to gather a group of therapists who believe the ABA works and there is no limit to progress when we, the clients and the clients' caregivers work hard TODAY in order to significantly improve the clients and their families' quality of life.
+                        </span>
+                    </div>
+                </div>
+                <div class="features-row">
+                    <div class="features-row-icon">
+                        <div class="feature second"></div>
+                    </div>
+                    <div id="services" class="features-row-content">
+                        <h3>SERVICES</h3>
+                        <span>
+                            <ul align="justify">
+                                <li>Applied behavior Analysis services In Miami Dade County</li>
+                                <li>Verbal behavior and language acquisition</li>
+                                <li>learning skills</li>
+                                <li>Social skills</li>
+                                <li>Functional Living skills</li>
+                                <li>Community Skills</li>
+                                <li>Language Skills</li>
+                                <li>Online Consulting services (national and international)</li>
+                                <li>Training to staff and parents in ABA</li>
+                                <li>ABA supervision</li>
+                                <li>Behavior acquisition skills</li>
+                                <li>Behavior reduction</li>
+                                <li>ABA services in school, home or community settings</li>
+                            </ul>
+                            We perform ABA around clients daily activities and across behaviors individuals and settings in order to promote generalization and increase welfare of clients whom we serve.
+                        </span>
+                    </div>
+                </div>
+                <div class="features-row">
+                    <div class="features-row-icon">
+                        <div class="feature third"></div>
+                    </div>
+                    <div class="features-row-content">
+                        <h3>DONATIONS</h3>
+                        <span>Please donate today to support community events and individuals in various need</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="effect">
+            <img src="assets/layout/images/pages/landing/effect-bottom-1.svg" alt="AbaToday" />
+        </div>
+    </div>
+    <div id="pricing" class="section">
+        <div class="section-title">
+            <h1>Pricing</h1>
+            <p>Schedule an online ABA consulting in order to ask the expert how to best treat your child's problem behaviors or to increase desired adaptive behaviors</p>
+        </div>
+        <div class="pricing-cards">
+            <!--<div class="pricing-card free">
+                <div class="pricing-card-title">
+                    <h2>FREE</h2>
+                    <p>Limited Time Only</p>
+                </div>
+                <div class="pricing-card-price">
+                    $0
+                </div>
+                <div class="pricing-license-rows">
+                    <div class="pricing-license-row">Responsive Layout</div>
+                    <div class="pricing-license-row disabled">Unlimited Push Messages</div>
+                    <div class="pricing-license-row disabled">50 Support Ticket</div>
+                    <div class="pricing-license-row disabled">Free Shipping</div>
+                    <div class="pricing-license-row disabled">Unlimited Storage</div>
+                </div>
+                <div class="pricing-license-button">
+                    <button>TRY FREE</button>
+                </div>
+            </div>-->
+            <div class="pricing-card premium">
+                <div class="pricing-card-title">
+                    <h2>PREMIUM</h2>
+                    <p>Online consulting services</p>
+                </div>
+                <div class="pricing-card-price">
+                    USD $150
+                </div>
+                <!--<div class="pricing-license-rows">
+                    <div class="pricing-license-row">Responsive Layout</div>
+                    <div class="pricing-license-row">Unlimited Push Messages</div>
+                    <div class="pricing-license-row">50 Support Ticket</div>
+                    <div class="pricing-license-row">Free Shipping</div>
+                    <div class="pricing-license-row">10 GB Storage</div>
+                </div>-->
+                <div class="pricing-license-button">
+                    <button>BUY PREMIUM</button>
+                </div>
+            </div>
+            <!--<div class="pricing-card enterprise">
+                <div class="pricing-card-title">
+                    <h2>ENTERPRISE</h2>
+                    <p>For Only Forbes 500</p>
+                </div>
+                <div class="pricing-card-price">
+                    Custom
+                </div>
+                <div class="pricing-license-rows">
+                    <div class="pricing-license-row">Responsive Layout</div>
+                    <div class="pricing-license-row">Unlimited Push Messages</div>
+                    <div class="pricing-license-row">Unlimited Support Ticket</div>
+                    <div class="pricing-license-row">Free Shipping</div>
+                    <div class="pricing-license-row">Unlimited Storage</div>
+                </div>
+                <div class="pricing-license-button">
+                    <button>GET A QUOTE</button>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <div id="contactUs" class="section">
+        <div class="p-grid layout-dashboard">
+            <div class="p-col-12 p-lg-4 p-md-4">
+            </div>
+            <div class="p-col-12 p-lg-4 p-md-4">
+                <div class="card support-request ">
+                    <div class="section-title">
+                        <h1>{{ 'GENERAL.CONTACTUS.TITLE' | translate }}</h1>
+                    </div>
+
+                    <label for="resolution-username">{{ 'GENERAL.CONTACTUS.NAME' | translate }}</label>
+                    <input pInputText
+                           type="text"
+                           id="name"
+                           placeholder="{{ 'GENERAL.CONTACTUS.TYPEUSERNAME' | translate }}"
+                           maxlength="128"
+                           [(ngModel)]="contactUs.name" />
+
+                    <label for="resolution-username">{{ 'GENERAL.CONTACTUS.EMAIL' | translate }}</label>
+                    <input pInputText
+                           type="email"
+                           id="email"
+                           placeholder="{{ 'GENERAL.CONTACTUS.TYPEEMAIL' | translate }}"
+                           maxlength="128"
+                           [(ngModel)]="contactUs.email" />
+
+                    <label for="resolution-message">{{ 'GENERAL.CONTACTUS.MESSAGE' | translate }}</label>
+                    <textarea type="text"
+                              pInputTextarea
+                              id="resolution-message"
+                              [rows]="8"
+                              placeholder="{{ 'GENERAL.CONTACTUS.TYPEMESSAGE' | translate }}"
+                              [autoResize]="false"
+                              [(ngModel)]="contactUs.message"></textarea>
+
+                    <div class="section-title">
+                        <button pButton
+                                type="button"
+                                label="{{ 'GENERAL.CONTACTUS.SEND' | translate }}"
+                                icon="pi pi-star"
+                                (click)="doContactUs()"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col-12 p-lg-4 p-md-4">
+            </div>
+        </div>
+    </div>
+
+    <div id="multimedia" class="section">
+        <div class="section-title">
+            <h1>Multimedia</h1>
+            <p>Social Skills</p>
+        </div>
+        <div class="multimedia-video-wrapper">
+            <iframe src="https://www.youtube.com/embed/HnN-iovyqKw" frameborder="0" allowfullscreen="true"></iframe>
+        </div>
+        <div class="multimedia-video-wrapper">
+            <iframe src="https://www.youtube.com/embed/HnN-iovyqKw" frameborder="0" allowfullscreen="true"></iframe>
+        </div>
+        <div class="effect">
+            <img src="assets/layout/images/pages/landing/effect-bottom.svg" alt="AbaToday" />
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="logo-text">
+            <img src="assets/img/ABA.png" alt="AbaToday" />
+            <div class="text">
+                <h1>AbaToday</h1>
+                <span>Applied Behavior Analysis Today Inc.</span>
+            </div>
+        </div>
+        <div class="icons">
+            <div class="icon icon-hastag">
+                <a href="#">
+                    <img src="assets/layout/images/landing/icon-twitter.png" width="18">
+                </a>
+            </div>
+            <div class="icon icon-twitter">
+                <a href="#">
+                    <img src="assets/layout/images/landing/icon-facebook.png" width="18" height="18">
+                </a>
+            </div>
+            <div class="icon icon-prime">
+                <a href="#">
+                    <img src="assets/layout/images/landing/icon-github.png" width="18">
+                </a>
+            </div>
+        </div>
+        <div class="landing-mask" id="landing-mask"></div>
+    </div>
+
+    <script>
+        MirageLanding = {
+            addClass: function (element, className) {
+                if (element.classList)
+                    element.classList.add(className);
+                else
+                    element.className += ' ' + className;
+            },
+
+            removeClass: function (element, className) {
+                if (element.classList)
+                    element.classList.remove(className);
+                else
+                    element.className = element.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+            },
+
+            hasClass: function (element, className) {
+                if (element.classList)
+                    return element.classList.contains(className);
+                else
+                    return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+            },
+
+            hideMenu: function () {
+                this.removeClass(document.getElementById('landing-menu'), 'landing-menu-active');
+                this.removeClass(document.getElementById('landing-menu-button'), 'landing-menu-active');
+                this.removeClass(document.getElementById('landing-mask'), 'landing-menu-active');
+            },
+
+            showMenu: function () {
+                this.addClass(document.getElementById('landing-menu'), 'landing-menu-active');
+                this.addClass(document.getElementById('landing-menu-button'), 'landing-menu-active');
+                this.addClass(document.getElementById('landing-mask'), 'landing-menu-active');
+            }
+        };
+
+        document.getElementById('landing-menu-button').addEventListener('click', function (e) {
+            var menu = document.getElementById('landing-menu');
+
+            if (MirageLanding.hasClass(menu, 'landing-menu-active')) {
+                MirageLanding.hideMenu();
+            } else {
+                MirageLanding.showMenu();
+            }
+
+            e.preventDefault();
+        });
+
+        document.getElementById('landing-mask').addEventListener('click', function (e) {
+            MirageLanding.hideMenu();
+
+            e.preventDefault();
+        });
+
+        var menuLinks = document.querySelectorAll('#landing-menu a');
+        for (i = 0; i < menuLinks.length; i++) {
+            menuLinks[i].addEventListener('click', function (e) {
+                MirageLanding.hideMenu();
+            });
+        }
+    </script>
+</div>

@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root Type="DevExpress.CodeRush.Foundation.CodeIssues.CodeIssueCatalogOptions">
+  <Options Language="C#">
+    <CodeIssues>
+      <Item Id="{daf861ee-0ae2-49c1-852c-11fa6da472d4}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{2e299383-0dc7-4a8b-8cd2-da63d0d8b31e}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{151a7040-661f-4842-8250-1cb098f10538}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{dde2ba22-334f-4ecc-8275-8dda15ce6615}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{39c516f5-3f0a-4a18-bdbf-684df924edb8}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{5f295cec-01ca-41bb-9c10-50bf35da6643}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{3b161640-74d9-40f8-813c-8564dbd09b0c}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{55d633ec-8c32-4c16-a0c6-6502cbcdae7f}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{941d587c-32f6-4eeb-8ba8-5ba2de09c493}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{6c1f265d-5604-4042-9837-c231da5a9a88}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{98ab8e53-883c-4d14-9147-c905f2fa5752}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{1c839efa-1f09-4d09-9a30-5eac635f95bf}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{eb1eaad6-1288-4401-b4e5-e4bbb2763154}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{211477e9-0252-48ea-a81c-aac83ceb2b57}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{549cee19-7bc5-4a18-9b40-746c92cc834c}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{4cf16500-dfc9-4c42-8928-a71d34e75889}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{766f3959-fdd2-46a3-822a-eacfa490f019}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{145c0f4e-b4c4-45f4-863e-79ec90e84489}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{7bd5feea-bdfc-402c-9209-395c3c03b2c5}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{4889ddc9-807b-4b17-a8d0-a1b1fefceb1b}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{4eaa3e63-a5b2-43d9-9278-378d8bcc533b}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{4ada2fd9-7964-4ebe-8579-4e97e9abbf94}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{10dbe949-dcbd-419a-a92d-785bb2c8b1e0}">
+        <Id>CRR0029</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{93d0b075-3ce5-4aa9-8782-368593264bae}">
+        <Id>CRR0030</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{6ca125c6-f5b3-4e93-ac69-62240d12ad26}">
+        <Id>CRR0031</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Error</Severity>
+      </Item>
+      <Item Id="{c5f67754-d265-4c7b-9e81-07ccc8db6d3c}">
+        <Id>CRR0033</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{2990727b-9078-454e-83cb-08f1421f852e}">
+        <Id>CRR0034</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{42844b8a-b4c9-49c9-aa49-901a59a04f86}">
+        <Id>CRR0035</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{5a8ddd0f-ab94-452f-be55-c69be811da2f}">
+        <Id>CRR0036</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{31f3e767-4f0d-422d-a720-764b8c5f884b}">
+        <Id>CRR0037</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{52fa358f-a5c3-4668-88b9-addf51986b2c}">
+        <Id>CRR0038</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{3b499173-6c6e-4e88-84e0-17dd679e00a5}">
+        <Id>CRR0039</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{e85b1501-f790-4382-b539-f51a2813edca}">
+        <Id>CRR0040</Id>
+        <Enabled>False</Enabled>
+        <UseInBackground>False</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{7272dc44-6a5d-4241-8beb-559bbbc5fadd}">
+        <Id>CRR0041</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>False</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{3bbeb214-b792-4260-b756-6eb397ce162a}">
+        <Id>CRR0042</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{f0406251-429d-433f-b4f5-288bb954cff4}">
+        <Id>CRR0043</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{663b2430-a965-4c17-919f-17fef7283150}">
+        <Id>CRR0044</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{72219b11-3c11-4565-861c-fb86bdfffa4f}">
+        <Id>CRR0045</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{800a0299-6252-4fd6-927b-278c965ee1f0}">
+        <Id>CRR0046</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{d696ec12-d3e5-4766-b30b-d5fa55efc327}">
+        <Id>CRR0047</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{a4d01b22-6dba-4f25-bf5c-b7b996ec23ca}">
+        <Id>CRR0048</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{02c4131b-eae2-47b3-ada5-46ec9e376df2}">
+        <Id>CRR0049</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{b07046c9-089e-42df-9179-d223987c01ef}">
+        <Id>CRR0051</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{b614c776-9734-4df6-bdbf-310f2b622473}">
+        <Id>CRR0052</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{9e9c7316-5aa1-4486-8b95-5969b53a3fd9}">
+        <Id>CRR1000</Id>
+        <Enabled>True</Enabled>
+        <UseInBackground>True</UseInBackground>
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{1d31037a-fd48-47cd-8bba-943183751e30}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{baa55f82-6d9d-4901-97da-95adf2de015f}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{10f5ae23-4de3-4dbb-aff5-510d9de883c4}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{04d6028e-9434-4329-874e-9a8bd9ee7ac7}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{ed330df0-9b64-408d-bc9b-7bef916c81a8}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{705e8963-8cdd-418f-8df3-d2282b0aed45}">
+        <Severity>Warning</Severity>
+      </Item>
+      <Item Id="{948eba8e-128f-4a88-8071-e5267199cb2c}">
+        <Severity>Warning</Severity>
+      </Item>
+    </CodeIssues>
+  </Options>
+</Root>

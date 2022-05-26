@@ -1,0 +1,35 @@
+<p-toast position="top-right"></p-toast>
+<div class="login-body" [ngClass]="{'layout-dark': dark, 'layout-light': !dark}">
+    <div class="login-content">
+        <div class="night-switch">
+            <p-button styleClass="dark-switch" icon="pi pi-circle-on" (click)="dark = true"></p-button>
+            <p-button styleClass="light-switch" icon="pi pi-circle-off" (click)="dark = false"></p-button>
+        </div>
+        <div class="login-panel">
+            <div class="login-panel-content">
+                <div class="logo">
+                    <img src="assets/img/logo-2.png" alt="AbaToday Logo" />
+                </div>
+                <h1>{{ 'ACCOUNT.REGISTER.PAGETITLE' | translate }}</h1>
+                <h3 *ngIf="isLoading" class="text-center">
+                    <i class="far fas fa-sync fa-spin"></i>
+                </h3>
+                <p-message *ngIf="error"
+                           severity="error"
+                           [text]="error"></p-message>
+                <p-message *ngIf="isConfirmed"
+                           severity="success"
+                           [text]="'ACCOUNT.REGISTER.EMAILCONFIRMED' | translate">
+                </p-message>
+                <div *ngIf="isConfirmed" class="mt">
+                    <a class="secondary-button"
+                       [routerLink]="['/account/login']">
+                        {{ 'ACCOUNT.LOGIN.CLICKHERE' | translate }}
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="desert"></div>
+    </div>
+</div>

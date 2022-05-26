@@ -1,0 +1,373 @@
+<p-confirmDialog [header]="'GENERAL.CONFIRMATION' | translate"
+                 icon="pi pi-exclamation-triangle"
+                 [draggable]="true"></p-confirmDialog>
+<p-toast position="top-right"></p-toast>
+<p-table #dt
+         styleClass="ui-table-logicpod"
+         [value]="entityList.entities"
+         [columns]="selectedColumns"
+         [(selection)]="selectedEntities"
+         [paginator]="true"
+         [rowsPerPageOptions]="[5,10,20,50,100]"
+         [rows]="20"
+         [reorderableColumns]="true"
+         [resizableColumns]="true"
+         columnResizeMode="expand"
+         [scrollable]="true"
+         [lazy]="true"
+         [loading]="isLoading"
+         stateStorage="local"
+         [stateKey]="'grid' + (parentEntityId ? parentEntityId : entityName) + 'v1.5.14'"
+         dataKey="id"
+         [totalRecords]="entityList.count"
+         (onLazyLoad)="loadEntities($event)"
+         (onStateRestore)="restoreState($event)"
+         (onRowSelect)="onRowSelectionChanged($event)"
+         (onRowUnselect)="onRowSelectionChanged($event)">
+    <ng-template pTemplate="caption">
+        <div class="p-grid p-justify-between">
+            <div class="p-col">
+                <div class="float-left">
+                    <p-multiSelect [id]="(entityName)+'columnFilter'" [options]="masterDataService.getGridColumns(entityName)"
+                                   class="float-left"
+                                   [style]="{ minWidth: '200px' }"
+                                   [(ngModel)]="selectedColumns"
+                                   optionLabel="header"
+                                   selectedItemsLabel="{0} visible columns"
+                                   [defaultLabel]="'GENERAL.CHOOSECOLUMNS' | translate"></p-multiSelect>
+                </div>
+            </div>
+            <div class="p-col">
+                <div class="ui-inputgroup float-right-lg">
+                    <input [id]="'inputGlobalFilter' + (parentEntityId ? parentEntityId : entityName)"
+                           [name]="'inputGlobalFilter' + (parentEntityId ? parentEntityId : entityName)"
+                           class="global-filter-txt"
+                           type="text"
+                           pInputText
+                           size="50"
+                           [placeholder]="'GENERAL.GRIDFILTER' | translate"
+                           [(ngModel)]="globalFilter"
+                           (keyup.enter)="loadEntities()"
+                           (keyup.esc)="resetGridFilter()">
+                    <p-menu #menu [popup]="true" [model]="toolbarStaticItems" appendTo="body"></p-menu>
+                    <button pButton
+                            [id]="parentEntityId ? 'globalActionsChild' : 'globalActions'"
+                            class="mt-0"
+                            [ngClass]="(entityName) + ' global-filter-btn'"
+                            type="button"
+                            icon="pi pi-ellipsis-v"
+                            (click)="menu.toggle($event)"></button>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+            <col *ngIf="showRowNumbers" style="width: 42px" />
+            <col style="width: 42px" />
+            <col *ngIf="showEditAction || showDeleteAction || enableRowExpand || detailsComponent || childIcons"
+                 [style.width]="getActionsWidth()" />
+            <col *ngFor="let col of columns" [style.width]="col.width">
+        </colgroup>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngIf="showRowNumbers" pResizableColumn class="text-center">#</th>
+            <th pResizableColumn>
+                <p-tableHeaderCheckbox *ngIf="!singleSelection" class="float-left"></p-tableHeaderCheckbox>
+            </th>
+            <th *ngIf="showEditAction || showDeleteAction || enableRowExpand || detailsComponent || childIcons"
+                pResizableColumn>
+                {{ 'GENERAL.ACTIONS' | translate }}
+            </th>
+            <th *ngFor="let col of columns"
+                [pSortableColumn]="col['field']"
+                pReorderableColumn
+                pResizableColumn>
+                {{ col.header }}
+                <p-sortIcon [field]="col['field']"></p-sortIcon>
+            </th>
+        </tr>
+        <tr *ngIf="enableColumnFilters">
+            <th *ngIf="showRowNumbers"></th>
+            <th></th>
+            <th></th>
+            <th *ngIf="showDeleteAction || showEditAction || enableRowExpand"></th>
+            <th *ngFor="let col of columns" [ngSwitch]="col['filterType']">
+                <input *ngSwitchCase="filterType.Text"
+                       pInputText
+                       style="width: 100%"
+                       type="text"
+                       [value]="columnFilters && columnFilters[col['field']] ? columnFilters[col['field']].value : null"
+                       (input)="dt.filter($event.target['value'], col['field'], 'contains')">
+                <p-multiSelect *ngSwitchCase="filterType.List"
+                               style="width: 100%"
+                               [options]="getFilterListValues(col['filterListName'])"
+                               appendTo="body"
+                               selectedItemsLabel="{0} items selected"
+                               [defaultLabel]="'GENERAL.ALLRECORDS' | translate"
+                               (onChange)="dt.filter($event.value, col['field'], 'in')"></p-multiSelect>
+                <div *ngSwitchCase="filterType.Number" class="d-flex">
+                    <select #numOperator
+                            class="form-control num-filter-operator"
+                            (change)="dt.filter(numFilter.value, col['field'], numOperator.value)">
+                        <option value="eq"
+                                [selected]="!columnFilters || !columnFilters[col['field']] || columnFilters[col['field']]['matchMode'] === 'eq'">
+                            =
+                        </option>
+                        <option value="df"
+                                [selected]="columnFilters && columnFilters[col['field']] && columnFilters[col['field']]['matchMode'] === 'df'">
+                            !=
+                        </option>
+                        <option value="gt"
+                                [selected]="columnFilters && columnFilters[col['field']] && columnFilters[col['field']]['matchMode'] === 'gt'">
+                            &gt;
+                        </option>
+                        <option value="ge"
+                                [selected]="columnFilters && columnFilters[col['field']] && columnFilters[col['field']]['matchMode'] === 'ge'">
+                            &gt;=
+                        </option>
+                        <option value="lt"
+                                [selected]="columnFilters && columnFilters[col['field']] && columnFilters[col['field']]['matchMode'] === 'lt'">
+                            &lt;
+                        </option>
+                        <option value="le"
+                                [selected]="columnFilters && columnFilters[col['field']] && columnFilters[col['field']]['matchMode'] === 'le'">
+                            &lt;=
+                        </option>
+                    </select>
+                    <input #numFilter
+                           pInputText
+                           class="flex-fill"
+                           style="width: 100%"
+                           type="number"
+                           pKeyFilter="num"
+                           [value]="columnFilters && columnFilters[col['field']] ? columnFilters[col['field']].value : null"
+                           (input)="dt.filter($event.target['value'], col['field'], numOperator.value)">
+                </div>
+
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body"
+                 let-entity
+                 let-expanded="expanded"
+                 let-columns="columns"
+                 let-rowIndex="rowIndex">
+        <tr [routerLinkActive]="['selected-row']" [pSelectableRow]="entity">
+            <td *ngIf="showRowNumbers" class="text-center">
+                <small>{{ rowIndex + 1 }}</small>
+            </td>
+            <td>
+                <p-tableCheckbox *ngIf="!singleSelection" [value]="entity"></p-tableCheckbox>
+                <p-tableRadioButton *ngIf="singleSelection" [value]="entity"></p-tableRadioButton>
+            </td>
+            <td *ngIf="showEditAction || showDeleteAction || enableRowExpand || detailsComponent || childIcons">
+                <a *ngIf="enableRowExpand" href="#" [pRowToggler]="entity" class="mr" [id]="(entityName) + 'DETAIL'">
+                    <i *ngIf="expanded" class="fas action-button fa-chevron-down"></i>
+                    <i *ngIf="!expanded" class="fas action-button fa-chevron-right"></i>
+                </a>
+                <ng-container *ngFor="let child of childRoutes; let i = index">
+                    <button *ngIf="child && child.length > 0" pButton
+                            type="button"
+                            class="ui-button-success"
+                            [id]="childTitles[i].replaceAll('.','')"
+                            [routerLink]="[entity.id, child]"
+                            [pTooltip]="childTitles && childTitles[i] ? (childTitles[i] | translate) : ('GENERAL.VIEWCHILDREN' | translate)"
+                            style="margin-right: .5em"
+                            [icon]="childIcons && childIcons[i] ? childIcons[i] : 'fas fa-arrow-down'"></button>
+                </ng-container>
+                <button *ngIf="detailsComponent"
+                        pButton
+                        type="button"
+                        [id]="(entityName) + 'GENERALDETAILS'"
+                        class="ui-button-info"
+                        [pTooltip]="'GENERAL.DETAILS' | translate"
+                        (click)="viewDetails(entity, detailsComponent)"
+                        style="margin-right: .5em"
+                        icon="pi pi-search-plus"></button>
+                <button *ngIf="showEditAction"
+                        pButton
+                        type="button"
+                        [id]="(entityName) + 'GENERALEDIT'"
+                        [class.ui-button-warning]="!entity['cannotBeEdited']"
+                        [class.ui-button-secondary]="entity['cannotBeEdited']"
+                        [routerLink]="['edit', entity.id]"
+                        [pTooltip]="'GENERAL.EDIT' | translate"
+                        style="margin-right: .5em"
+                        [disabled]="entity['cannotBeEdited']"
+                        icon="pi pi-pencil"></button>
+                <button *ngIf="showDeleteAction"
+                        pButton
+                        type="button"
+                        [id]="(entityName) + 'GENERALDELETE'"
+                        [class.ui-button-danger]="!entity['hasRelatedData'] && !entity['cannotBeDeleted']"
+                        [class.ui-button-secondary]="entity['hasRelatedData'] || entity['cannotBeDeleted']"
+                        [disabled]="entity['hasRelatedData'] || entity['cannotBeDeleted']"
+                        [pTooltip]="(entity['hasRelatedData'] || entity['cannotBeDeleted']) ? ('GENERAL.CANNOTDELETE' | translate) : ('GENERAL.DELETE' | translate)"
+                        (click)="confirmDeleteRecord(entity.id)"
+                        icon="pi pi-trash"></button>
+            </td>
+            <td *ngFor="let col of columns"
+                [class.text-center]="col['isImageUrl']">
+                <a *ngIf="col['latPropertyName'] && col['lngPropertyName']"
+                   class="cursor"
+                   (click)="showMap(entity[col['latPropertyName']], entity[col['lngPropertyName']], entity[col['field']])">
+                    {{ entity[col['field']] | translate }}
+                </a>
+                <a *ngIf="col['isEmail']" [href]="'mailto:' + entity[col['field']]">
+                    {{ entity[col['field']] | translate }}
+                </a>
+                <img *ngIf="col['isImageUrl']  && !col['image']"
+                     class="product-image-grid rounded-circle"
+                     alt="Element image"
+                     [src]="entity[col['field']] ? entity[col['field']] : 'assets/img/no-image.png'" />
+                <img *ngIf="col['isImageUrl'] && col['image']"
+                     class="click-link-image product-image-grid rounded-circle"
+                     (click)="showImage(entity[col['image']])"
+                     alt="Element image"
+                     [src]="entity[col['field']] ? entity[col['field']] : 'assets/img/no-image.png'" />
+                <span *ngIf="col['isCurrency']">
+                    {{ (entity[col['field']] ? (entity[col['useUsd']] ? 'USD' : currentCurrency) : '') }}
+                    {{ entity[col['field']] | currency: currentCurrency: 'symbol-narrow' }}
+                </span>
+                <div *ngIf="col['isProgressBar']"
+                     class="align-items-center">
+                    <p-progressBar [value]="getPercentageForProgressBar(entity[col['field']])"
+                                   [showValue]="true"></p-progressBar>
+                </div>
+                <a *ngIf="col['showsDetailsForList']"
+                   class="cursor"
+                   (click)="viewDetails(entity[col['field']], getDetailsComponentForListColumn(col['filterListName']))">
+                    {{ col['displayProperty'] ? (entity[col['displayProperty']] | translate) : (entity[col['field']] | translate) }}
+                </a>
+                <span *ngIf="col['isCommaSeparated']">
+                    {{ translateCommaSeparatedField(entity[col['field']]) }}
+                </span>
+                <span *ngIf="col['isLpn'] && entity[col['field']]">
+                    {{ 'LPN' + entity[col['field']].toString().padStart(8, "0") }}
+                </span>
+                <span *ngIf="col['isTimespan']">
+                    {{ getDuration(entity[col['field']]) }}
+                </span>
+                <span *ngIf="col.isDate">
+                    {{ masterDataService.convertToLocalDate(entity[col['field']]) | date:'shortDate' }}
+                </span>
+                <span *ngIf="col['isDateTime']">
+                    {{ masterDataService.convertToLocalDate(entity[col['field']]) | date:'short' }}
+                </span>
+                <span *ngIf="col['isTime']">
+                    {{ masterDataService.convertToLocalDate(entity[col['field']]) | date:'shortTime' }}
+                </span>
+                <span *ngIf="col['isConditionalFlag'] && entity[col['field']]"
+                      class="badge"
+                      [class.badge-green]="entity[col['field']] > '0'"
+                      [class.badge-red]="entity[col['field']] < '0'">
+                    {{ getTextForConditionalFlag(entity[col['field']]) }}
+                </span>
+                <div *ngIf="col['isInbountOrderStatus']">
+                    <ng-container [ngSwitch]="entity[col['field']]">
+                        <span *ngSwitchCase="'ONTI'"
+                              class="badge badge-orange">{{ 'ORDERS.INBOUND.RECEIPTSTATUS.ONTIME' | translate }}</span>
+                        <span *ngSwitchCase="'LATE'"
+                              class="badge badge-red">{{ 'ORDERS.INBOUND.RECEIPTSTATUS.LATE' | translate }}</span>
+                        <span *ngSwitchCase="'ARRI'"
+                              class="badge badge-ligth-blue">{{ 'ORDERS.INBOUND.RECEIPTSTATUS.ARRIVED' | translate }}</span>
+                        <span *ngSwitchCase="'INPR'"
+                              class="badge badge-blue">{{ 'ORDERS.INBOUND.RECEIPTSTATUS.INPROCESS' | translate }}</span>
+                        <span *ngSwitchCase="'RECE'"
+                              class="badge badge-green">{{ 'ORDERS.INBOUND.RECEIPTSTATUS.RECEIVED' | translate }}</span>
+                        <span *ngSwitchCase="'CLOS'"
+                              class="badge badge-gray">{{ 'ORDERS.INBOUND.RECEIPTSTATUS.CLOSED' | translate }}</span>
+                    </ng-container>
+                </div>
+                <div *ngIf="col['isOutboundOrderStatus']">
+                    <ng-container [ngSwitch]="entity[col['field']]">
+                        <span *ngSwitchCase="'ONTI'"
+                              class="badge badge-orange">{{ 'ORDERS.OUTBOUND.SHIPPINGSTATUS.ONTIME' | translate }}</span>
+                        <span *ngSwitchCase="'LATE'"
+                              class="badge badge-red">{{ 'ORDERS.OUTBOUND.SHIPPINGSTATUS.LATE' | translate }}</span>
+                        <span *ngSwitchCase="'RELE'"
+                              class="badge badge-ligth-blue">{{ 'ORDERS.OUTBOUND.SHIPPINGSTATUS.RELEASE' | translate }}</span>
+                        <span *ngSwitchCase="'INPR'"
+                              class="badge badge-blue">{{ 'ORDERS.OUTBOUND.SHIPPINGSTATUS.INPROCESS' | translate }}</span>
+                        <span *ngSwitchCase="'SHIP'"
+                              class="badge badge-green">{{ 'ORDERS.OUTBOUND.SHIPPINGSTATUS.SHIPPED' | translate }}</span>
+                        <span *ngSwitchCase="'CLOS'"
+                              class="badge badge-gray">{{ 'ORDERS.OUTBOUND.SHIPPINGSTATUS.CLOSED' | translate }}</span>
+                        <span *ngSwitchCase="'CANC'"
+                              class="badge badge-purple">{{ 'ORDERS.OUTBOUND.SHIPPINGSTATUS.CANCELED' | translate }}</span>
+                    </ng-container>
+                </div>
+                <div *ngIf="col['isServiceOrderStatus']">
+                    <ng-container [ngSwitch]="entity[col['field']]">
+                        <span *ngSwitchCase="'ONTI'"
+                              class="badge badge-orange">{{ 'ORDERS.SERVICES.SERVICESTATUSTYPE.ONTIME' | translate }}</span>
+                        <span *ngSwitchCase="'LATE'"
+                              class="badge badge-red">{{ 'ORDERS.SERVICES.SERVICESTATUSTYPE.LATE' | translate }}</span>
+                        <span *ngSwitchCase="'REST'"
+                              class="badge badge-ligth-blue">{{ 'ORDERS.SERVICES.SERVICESTATUSTYPE.READYTOSTART' | translate }}</span>
+                        <span *ngSwitchCase="'STAR'"
+                              class="badge badge-blue">{{ 'ORDERS.SERVICES.SERVICESTATUSTYPE.STARTED' | translate }}</span>
+                        <span *ngSwitchCase="'COMP'"
+                              class="badge badge-green">{{ 'ORDERS.SERVICES.SERVICESTATUSTYPE.COMPLETED' | translate }}</span>
+                        <span *ngSwitchCase="'NOCO'"
+                              class="badge badge-gray">{{ 'ORDERS.SERVICES.SERVICESTATUSTYPE.NOTCOMPLETED' | translate }}</span>
+                    </ng-container>
+                </div>
+                <span *ngIf="col['flagClassPropertyName'] && entity[col['flagClassPropertyName']]"
+                      class="icon-md">
+                    <i [class]="'fas fa-fw fa-circle ' + entity[col['flagClassPropertyName']]"></i>
+                </span>
+                <span *ngIf="col['rowBoolStatusPropertyName']"
+                      class="icon-md">
+                    <i *ngIf="entity[col['rowBoolStatusPropertyName']]"
+                       [pTooltip]="'ORDERS.OUTBOUND.ALLDATA' | translate"
+                       class="far fa-fw fa-check-circle text-bright-green"></i>
+                    <i *ngIf="!entity[col['rowBoolStatusPropertyName']]"
+                       [pTooltip]="'ORDERS.OUTBOUND.MISSINGDATA' | translate"
+                       class="fas fa-fw fa-exclamation-circle text-bright-red"></i>
+                </span>
+                <span *ngIf="col['showIconForSystemCreated'] && entity['createdBy']">
+                    <i *ngIf="entity['createdBy'].startsWith('logicpod')"
+                       [pTooltip]="'GENERAL.SYSTEMCREATED' | translate"
+                       class="fas fa-fw fa-laptop-code"></i>
+                    <i *ngIf="!entity['createdBy'].startsWith('logicpod')"
+                       [pTooltip]="'GENERAL.USERCREATED' | translate"
+                       class="fas fa-fw fa-user"></i>
+                </span>
+                <span *ngIf="!col['latPropertyName'] && !col['lngPropertyName'] && !col['isEmail'] && !col['isImageUrl'] && !col.image && !col['isCurrency'] && !col['isProgressBar'] && !col['isConditionalFlag'] && !col['showsDetailsForList'] && !col['isCommaSeparated'] && !col['isLpn'] && !col['isTimespan'] && !col.isDate && !col['isDateTime'] && !col['isTime'] && !col['isInbountOrderStatus'] && !col['isOutboundOrderStatus'] && !col['isServiceOrderStatus']">
+                    <span *ngIf="col.isBoolean">
+                        {{ (entity[col['field']] ? ('GENERAL.YES' | translate) : ('GENERAL.NO' | translate)) }}
+                    </span>
+                    <span *ngIf="!col.isBoolean">
+                        {{ col['displayProperty'] ? (entity[col['displayProperty']] | translate) : (entity[col['field']] | translate) }}
+                    </span>
+                </span>
+                <span *ngIf="col['badgePropertyName'] && entity[col['badgePropertyName']]" class="ml badge">
+                    {{ entity[col['badgePropertyName']] }}
+                </span>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template *ngIf="enableRowExpand" pTemplate="rowexpansion" let-entity>
+        <div [ngStyle]="{ 'width': gridWidth + 'px' }">
+            <!--<app-uoms-inline-loader *ngIf="entityName === 'products'" class="productsUomDETAILGRID"
+                                    [entityId]="entity.id"
+                                    [padTable]="true"
+                                    [isProduct]="true"></app-uoms-inline-loader>
+            <app-uoms-inline-loader *ngIf="entityName === 'bundles'"
+                                    [entityId]="entity.id"
+                                    [isProduct]="false"></app-uoms-inline-loader>
+            <app-inventory-details *ngIf="entityName === 'inventories'"
+                                   [productId]="entity.id"
+                                   (inventoryChanged)="loadEntities()"></app-inventory-details>
+            <app-shipped-order-details *ngIf="entityName === 'shippedorders'"
+                                       [shippingId]="entity.id"></app-shipped-order-details>
+            <app-bin-location-inventories *ngIf="entityName === 'binLocations'" class="binLocationInventoriesDETAILGRID"
+                                          [binLocationId]="entity.id"></app-bin-location-inventories>
+            <app-manage-manual-cycle-count-counted *ngIf="entityName === 'manualcyclecounts'"
+                                                   [manualCycleCountId]="entity.id"></app-manage-manual-cycle-count-counted>-->
+        </div>
+    </ng-template>
+</p-table>

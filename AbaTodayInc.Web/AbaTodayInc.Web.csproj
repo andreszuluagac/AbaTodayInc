@@ -1,0 +1,435 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup Label="Globals">
+		<SccProjectName>SAK</SccProjectName>
+		<SccProvider>SAK</SccProvider>
+		<SccAuxPath>SAK</SccAuxPath>
+		<SccLocalPath>SAK</SccLocalPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+		<IsPackable>false</IsPackable>
+		<SpaRoot>ClientApp\</SpaRoot>
+		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+		<!-- Set this to true if you enable server-side prerendering -->
+		<BuildServerSideRenderer>false</BuildServerSideRenderer>
+		<UserSecretsId>53ea8cd0-86a2-41de-be46-ba3cf3d5ee7a</UserSecretsId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <WarningLevel>2</WarningLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.9" />
+		<PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="3.1.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.0.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+		<PackageReference Include="NinjaNye.SearchExtensions" Version="3.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Don't publish the SPA source files, but do show them in the project files list -->
+		<Content Remove="$(SpaRoot)**" />
+		<None Remove="$(SpaRoot)**" />
+		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<TypeScriptCompile Remove="ClientApp\node_modules\**" />
+		<TypeScriptCompile Remove="ClientApp\src\app\models\contactus.ts" />
+		<TypeScriptCompile Remove="ClientApp\src\app\models\quote-response.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\create-response.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\delivery-date.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\dimensions.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\error-response.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\package.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\quote-response.ts" />
+		<TypeScriptCompile Remove="ClientApp\src\app\models\error-response.ts" />
+		<TypeScriptCompile Remove="ClientApp\src\app\models\shipping-method.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\shipping-label.ts" />
+		<TypeScriptCompile Include="ClientApp\src\app\models\envia-shipping\shipping-method.ts" />
+		<TypeScriptCompile Remove="ClientApp\src\app\models\delivery-date.ts" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="ClientApp\src\app\app.component.js" />
+		<None Remove="ClientApp\src\app\app.component.js.map" />
+		<None Remove="ClientApp\src\app\app.module.js" />
+		<None Remove="ClientApp\src\app\app.module.js.map" />
+		<None Remove="ClientApp\src\app\models\add-manual-cycle-count.js" />
+		<None Remove="ClientApp\src\app\models\add-manual-cycle-count.js.map" />
+		<None Remove="ClientApp\src\app\models\adjust-cycle-count.js" />
+		<None Remove="ClientApp\src\app\models\adjust-cycle-count.js.map" />
+		<None Remove="ClientApp\src\app\models\adjust-inventory.js" />
+		<None Remove="ClientApp\src\app\models\adjust-inventory.js.map" />
+		<None Remove="ClientApp\src\app\models\automated-cycle-count-result.js" />
+		<None Remove="ClientApp\src\app\models\automated-cycle-count-result.js.map" />
+		<None Remove="ClientApp\src\app\models\automated-cycle-count.js" />
+		<None Remove="ClientApp\src\app\models\automated-cycle-count.js.map" />
+		<None Remove="ClientApp\src\app\models\base-entity.js" />
+		<None Remove="ClientApp\src\app\models\base-entity.js.map" />
+		<None Remove="ClientApp\src\app\models\base-product-bin-location.js" />
+		<None Remove="ClientApp\src\app\models\base-product-bin-location.js.map" />
+		<None Remove="ClientApp\src\app\models\billing-document-item.js" />
+		<None Remove="ClientApp\src\app\models\billing-document-item.js.map" />
+		<None Remove="ClientApp\src\app\models\billing-document.js" />
+		<None Remove="ClientApp\src\app\models\billing-document.js.map" />
+		<None Remove="ClientApp\src\app\models\billing-item-list.js" />
+		<None Remove="ClientApp\src\app\models\billing-item-list.js.map" />
+		<None Remove="ClientApp\src\app\models\billing-item.js" />
+		<None Remove="ClientApp\src\app\models\billing-item.js.map" />
+		<None Remove="ClientApp\src\app\models\bin-location-filter.js" />
+		<None Remove="ClientApp\src\app\models\bin-location-filter.js.map" />
+		<None Remove="ClientApp\src\app\models\bin-location.js" />
+		<None Remove="ClientApp\src\app\models\bin-location.js.map" />
+		<None Remove="ClientApp\src\app\models\binlocation-basic.js" />
+		<None Remove="ClientApp\src\app\models\binlocation-basic.js.map" />
+		<None Remove="ClientApp\src\app\models\break.js" />
+		<None Remove="ClientApp\src\app\models\break.js.map" />
+		<None Remove="ClientApp\src\app\models\bundle-list.js" />
+		<None Remove="ClientApp\src\app\models\bundle-list.js.map" />
+		<None Remove="ClientApp\src\app\models\bundle.js" />
+		<None Remove="ClientApp\src\app\models\bundle.js.map" />
+		<None Remove="ClientApp\src\app\models\business-additional-data.js" />
+		<None Remove="ClientApp\src\app\models\business-additional-data.js.map" />
+		<None Remove="ClientApp\src\app\models\business.js" />
+		<None Remove="ClientApp\src\app\models\business.js.map" />
+		<None Remove="ClientApp\src\app\models\carrier.js" />
+		<None Remove="ClientApp\src\app\models\carrier.js.map" />
+		<None Remove="ClientApp\src\app\models\carton-stock-packing-result.js" />
+		<None Remove="ClientApp\src\app\models\carton-stock-packing-result.js.map" />
+		<None Remove="ClientApp\src\app\models\carton-stock.js" />
+		<None Remove="ClientApp\src\app\models\carton-stock.js.map" />
+		<None Remove="ClientApp\src\app\models\chart-data.js" />
+		<None Remove="ClientApp\src\app\models\chart-data.js.map" />
+		<None Remove="ClientApp\src\app\models\consolidation-bin-location.js" />
+		<None Remove="ClientApp\src\app\models\consolidation-bin-location.js.map" />
+		<None Remove="ClientApp\src\app\models\customer-additional-data.js" />
+		<None Remove="ClientApp\src\app\models\customer-additional-data.js.map" />
+		<None Remove="ClientApp\src\app\models\customer.js" />
+		<None Remove="ClientApp\src\app\models\customer.js.map" />
+		<None Remove="ClientApp\src\app\models\data-list.js" />
+		<None Remove="ClientApp\src\app\models\data-list.js.map" />
+		<None Remove="ClientApp\src\app\models\dynamic-header-chart.js" />
+		<None Remove="ClientApp\src\app\models\dynamic-header-chart.js.map" />
+		<None Remove="ClientApp\src\app\models\edit-inventory.js" />
+		<None Remove="ClientApp\src\app\models\edit-inventory.js.map" />
+		<None Remove="ClientApp\src\app\models\employee-labor.js" />
+		<None Remove="ClientApp\src\app\models\employee-labor.js.map" />
+		<None Remove="ClientApp\src\app\models\employee-timesheet-report.js" />
+		<None Remove="ClientApp\src\app\models\employee-timesheet-report.js.map" />
+		<None Remove="ClientApp\src\app\models\entity-filter-data.js" />
+		<None Remove="ClientApp\src\app\models\entity-filter-data.js.map" />
+		<None Remove="ClientApp\src\app\models\extended-attribute.js" />
+		<None Remove="ClientApp\src\app\models\extended-attribute.js.map" />
+		<None Remove="ClientApp\src\app\models\grid-column.js" />
+		<None Remove="ClientApp\src\app\models\grid-column.js.map" />
+		<None Remove="ClientApp\src\app\models\header-chart-variables.js" />
+		<None Remove="ClientApp\src\app\models\header-chart-variables.js.map" />
+		<None Remove="ClientApp\src\app\models\header-threshold.js" />
+		<None Remove="ClientApp\src\app\models\header-threshold.js.map" />
+		<None Remove="ClientApp\src\app\models\here-maps\here-search-results.js" />
+		<None Remove="ClientApp\src\app\models\here-maps\here-search-results.js.map" />
+		<None Remove="ClientApp\src\app\models\here-maps\item.js" />
+		<None Remove="ClientApp\src\app\models\here-maps\item.js.map" />
+		<None Remove="ClientApp\src\app\models\inventory-audit.js" />
+		<None Remove="ClientApp\src\app\models\inventory-audit.js.map" />
+		<None Remove="ClientApp\src\app\models\inventory-status-quantity.js" />
+		<None Remove="ClientApp\src\app\models\inventory-status-quantity.js.map" />
+		<None Remove="ClientApp\src\app\models\inventory.js" />
+		<None Remove="ClientApp\src\app\models\inventory.js.map" />
+		<None Remove="ClientApp\src\app\models\item-rate.js" />
+		<None Remove="ClientApp\src\app\models\item-rate.js.map" />
+		<None Remove="ClientApp\src\app\models\location.js" />
+		<None Remove="ClientApp\src\app\models\location.js.map" />
+		<None Remove="ClientApp\src\app\models\lumper.js" />
+		<None Remove="ClientApp\src\app\models\lumper.js.map" />
+		<None Remove="ClientApp\src\app\models\manage-page-entity.js" />
+		<None Remove="ClientApp\src\app\models\manage-page-entity.js.map" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count-bin-location.js" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count-bin-location.js.map" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count-product.js" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count-product.js.map" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count-result.js" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count-result.js.map" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count.js" />
+		<None Remove="ClientApp\src\app\models\manual-cycle-count.js.map" />
+		<None Remove="ClientApp\src\app\models\map-location.js" />
+		<None Remove="ClientApp\src\app\models\map-location.js.map" />
+		<None Remove="ClientApp\src\app\models\new-inventory.js" />
+		<None Remove="ClientApp\src\app\models\new-inventory.js.map" />
+		<None Remove="ClientApp\src\app\models\new-page-header-chart.js" />
+		<None Remove="ClientApp\src\app\models\new-page-header-chart.js.map" />
+		<None Remove="ClientApp\src\app\models\number-value-result.js" />
+		<None Remove="ClientApp\src\app\models\number-value-result.js.map" />
+		<None Remove="ClientApp\src\app\models\packed-carton-stock.js" />
+		<None Remove="ClientApp\src\app\models\packed-carton-stock.js.map" />
+		<None Remove="ClientApp\src\app\models\page-header-chart.js" />
+		<None Remove="ClientApp\src\app\models\page-header-chart.js.map" />
+		<None Remove="ClientApp\src\app\models\pending-task.js" />
+		<None Remove="ClientApp\src\app\models\pending-task.js.map" />
+		<None Remove="ClientApp\src\app\models\product-additional-data.js" />
+		<None Remove="ClientApp\src\app\models\product-additional-data.js.map" />
+		<None Remove="ClientApp\src\app\models\product-filter.js" />
+		<None Remove="ClientApp\src\app\models\product-filter.js.map" />
+		<None Remove="ClientApp\src\app\models\product-inventory.js" />
+		<None Remove="ClientApp\src\app\models\product-inventory.js.map" />
+		<None Remove="ClientApp\src\app\models\product-list.js" />
+		<None Remove="ClientApp\src\app\models\product-list.js.map" />
+		<None Remove="ClientApp\src\app\models\product-store-image.js" />
+		<None Remove="ClientApp\src\app\models\product-store-image.js.map" />
+		<None Remove="ClientApp\src\app\models\product.js" />
+		<None Remove="ClientApp\src\app\models\product.js.map" />
+		<None Remove="ClientApp\src\app\models\reason-code.js" />
+		<None Remove="ClientApp\src\app\models\reason-code.js.map" />
+		<None Remove="ClientApp\src\app\models\receipt-attachment.js" />
+		<None Remove="ClientApp\src\app\models\receipt-attachment.js.map" />
+		<None Remove="ClientApp\src\app\models\receipt-audit.js" />
+		<None Remove="ClientApp\src\app\models\receipt-audit.js.map" />
+		<None Remove="ClientApp\src\app\models\receipt-bulk-edit.js" />
+		<None Remove="ClientApp\src\app\models\receipt-bulk-edit.js.map" />
+		<None Remove="ClientApp\src\app\models\receipt-line-item-detail.js" />
+		<None Remove="ClientApp\src\app\models\receipt-line-item-detail.js.map" />
+		<None Remove="ClientApp\src\app\models\receipt-line-item-list.js" />
+		<None Remove="ClientApp\src\app\models\receipt-line-item-list.js.map" />
+		<None Remove="ClientApp\src\app\models\receipt-line-item.js" />
+		<None Remove="ClientApp\src\app\models\receipt-line-item.js.map" />
+		<None Remove="ClientApp\src\app\models\receipt.js" />
+		<None Remove="ClientApp\src\app\models\receipt.js.map" />
+		<None Remove="ClientApp\src\app\models\register.js" />
+		<None Remove="ClientApp\src\app\models\register.js.map" />
+		<None Remove="ClientApp\src\app\models\replenishment-task.js" />
+		<None Remove="ClientApp\src\app\models\replenishment-task.js.map" />
+		<None Remove="ClientApp\src\app\models\service-duplicate.js" />
+		<None Remove="ClientApp\src\app\models\service-duplicate.js.map" />
+		<None Remove="ClientApp\src\app\models\service-order - Copy.js" />
+		<None Remove="ClientApp\src\app\models\service-order - Copy.js.map" />
+		<None Remove="ClientApp\src\app\models\service-order-line-item-list.js" />
+		<None Remove="ClientApp\src\app\models\service-order-line-item-list.js.map" />
+		<None Remove="ClientApp\src\app\models\service-order-line-item.js" />
+		<None Remove="ClientApp\src\app\models\service-order-line-item.js.map" />
+		<None Remove="ClientApp\src\app\models\service-order.js" />
+		<None Remove="ClientApp\src\app\models\service-order.js.map" />
+		<None Remove="ClientApp\src\app\models\service-supply-list.js" />
+		<None Remove="ClientApp\src\app\models\service-supply-list.js.map" />
+		<None Remove="ClientApp\src\app\models\service-supply.js" />
+		<None Remove="ClientApp\src\app\models\service-supply.js.map" />
+		<None Remove="ClientApp\src\app\models\service.js" />
+		<None Remove="ClientApp\src\app\models\service.js.map" />
+		<None Remove="ClientApp\src\app\models\shipping-bulk-edit.js" />
+		<None Remove="ClientApp\src\app\models\shipping-bulk-edit.js.map" />
+		<None Remove="ClientApp\src\app\models\shipping.js" />
+		<None Remove="ClientApp\src\app\models\shipping.js.map" />
+		<None Remove="ClientApp\src\app\models\site-additional-data.js" />
+		<None Remove="ClientApp\src\app\models\site-additional-data.js.map" />
+		<None Remove="ClientApp\src\app\models\site.js" />
+		<None Remove="ClientApp\src\app\models\site.js.map" />
+		<None Remove="ClientApp\src\app\models\store-checkout-summary.js" />
+		<None Remove="ClientApp\src\app\models\store-checkout-summary.js.map" />
+		<None Remove="ClientApp\src\app\models\store-item.js" />
+		<None Remove="ClientApp\src\app\models\store-item.js.map" />
+		<None Remove="ClientApp\src\app\models\transfer-inventory.js" />
+		<None Remove="ClientApp\src\app\models\transfer-inventory.js.map" />
+		<None Remove="ClientApp\src\app\models\unit-of-measure-value.js" />
+		<None Remove="ClientApp\src\app\models\unit-of-measure-value.js.map" />
+		<None Remove="ClientApp\src\app\models\unit-of-measure.js" />
+		<None Remove="ClientApp\src\app\models\unit-of-measure.js.map" />
+		<None Remove="ClientApp\src\app\models\user.js" />
+		<None Remove="ClientApp\src\app\models\user.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\account-routing.module.js" />
+		<None Remove="ClientApp\src\app\modules\account\account-routing.module.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\account.module.js" />
+		<None Remove="ClientApp\src\app\modules\account\account.module.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\confirm-email\confirm-email.component.js" />
+		<None Remove="ClientApp\src\app\modules\account\confirm-email\confirm-email.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\forgot-password\forgot-password.component.js" />
+		<None Remove="ClientApp\src\app\modules\account\forgot-password\forgot-password.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\login\login.component.js" />
+		<None Remove="ClientApp\src\app\modules\account\login\login.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\register\register.component.js" />
+		<None Remove="ClientApp\src\app\modules\account\register\register.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\reset-password\reset-password.component.js" />
+		<None Remove="ClientApp\src\app\modules\account\reset-password\reset-password.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\dashboard\dashboard-routing.module.js" />
+		<None Remove="ClientApp\src\app\modules\dashboard\dashboard-routing.module.js.map" />
+		<None Remove="ClientApp\src\app\modules\dashboard\dashboard.module.js" />
+		<None Remove="ClientApp\src\app\modules\dashboard\dashboard.module.js.map" />
+		<None Remove="ClientApp\src\app\modules\dashboard\home\home.component.js" />
+		<None Remove="ClientApp\src\app\modules\dashboard\home\home.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\dashboard\manage-profile\manage-profile-details\manage-profile-details.component.js" />
+		<None Remove="ClientApp\src\app\modules\dashboard\manage-profile\manage-profile-details\manage-profile-details.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\dashboard\manage-profile\manage-profile.component.js" />
+		<None Remove="ClientApp\src\app\modules\dashboard\manage-profile\manage-profile.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\landing\home\home.component.js" />
+		<None Remove="ClientApp\src\app\modules\landing\home\home.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\layout\app-breadcrumb\app-breadcrumb.component.js" />
+		<None Remove="ClientApp\src\app\modules\layout\app-breadcrumb\app-breadcrumb.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\layout\app-config\app-config.component.js" />
+		<None Remove="ClientApp\src\app\modules\layout\app-config\app-config.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\layout\app-main\app-main.component.js" />
+		<None Remove="ClientApp\src\app\modules\layout\app-main\app-main.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\layout\app-menu\app-menu.component.js" />
+		<None Remove="ClientApp\src\app\modules\layout\app-menu\app-menu.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\layout\app-rightpanel\app-rightpanel.component.js" />
+		<None Remove="ClientApp\src\app\modules\layout\app-rightpanel\app-rightpanel.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\layout\app-topbar\app-topbar.component.js" />
+		<None Remove="ClientApp\src\app\modules\layout\app-topbar\app-topbar.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\layout\layout.module.js" />
+		<None Remove="ClientApp\src\app\modules\layout\layout.module.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-role-actions\manage-role-actions.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-role-actions\manage-role-actions.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\add-role\add-role.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\add-role\add-role.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\edit-role\edit-role.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\edit-role\edit-role.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\manage-roles.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\manage-roles.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\role-form\role-form.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-roles\role-form\role-form.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-user-roles\manage-user-roles.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-user-roles\manage-user-roles.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\add-user\add-user.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\add-user\add-user.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\edit-user\edit-user.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\edit-user\edit-user.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\manage-users.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\manage-users.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\user-form\user-form.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\manage-users\user-form\user-form.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\organization-charts\organization-charts.component.js" />
+		<None Remove="ClientApp\src\app\modules\security\organization-charts\organization-charts.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\security-routing.module.js" />
+		<None Remove="ClientApp\src\app\modules\security\security-routing.module.js.map" />
+		<None Remove="ClientApp\src\app\modules\security\security.module.js" />
+		<None Remove="ClientApp\src\app\modules\security\security.module.js.map" />
+		<None Remove="ClientApp\src\app\modules\shared.module.js" />
+		<None Remove="ClientApp\src\app\modules\shared.module.js.map" />
+		<None Remove="ClientApp\src\app\services\auth.service.js" />
+		<None Remove="ClientApp\src\app\services\auth.service.js.map" />
+		<None Remove="ClientApp\src\app\services\bin-locations.service.js" />
+		<None Remove="ClientApp\src\app\services\bin-locations.service.js.map" />
+		<None Remove="ClientApp\src\app\services\businesses.service.js" />
+		<None Remove="ClientApp\src\app\services\businesses.service.js.map" />
+		<None Remove="ClientApp\src\app\services\carriers.service.js" />
+		<None Remove="ClientApp\src\app\services\carriers.service.js.map" />
+		<None Remove="ClientApp\src\app\services\carton-stock.service.js" />
+		<None Remove="ClientApp\src\app\services\carton-stock.service.js.map" />
+		<None Remove="ClientApp\src\app\services\customers.service.js" />
+		<None Remove="ClientApp\src\app\services\customers.service.js.map" />
+		<None Remove="ClientApp\src\app\services\data-lists.service.js" />
+		<None Remove="ClientApp\src\app\services\data-lists.service.js.map" />
+		<None Remove="ClientApp\src\app\services\file-upload.service.js" />
+		<None Remove="ClientApp\src\app\services\file-upload.service.js.map" />
+		<None Remove="ClientApp\src\app\services\inventories.service.js" />
+		<None Remove="ClientApp\src\app\services\inventories.service.js.map" />
+		<None Remove="ClientApp\src\app\services\labor.service.js" />
+		<None Remove="ClientApp\src\app\services\labor.service.js.map" />
+		<None Remove="ClientApp\src\app\services\lumpers.service.js" />
+		<None Remove="ClientApp\src\app\services\lumpers.service.js.map" />
+		<None Remove="ClientApp\src\app\services\maps.service.js" />
+		<None Remove="ClientApp\src\app\services\maps.service.js.map" />
+		<None Remove="ClientApp\src\app\services\master-data.service.js" />
+		<None Remove="ClientApp\src\app\services\master-data.service.js.map" />
+		<None Remove="ClientApp\src\app\services\master-filter.service.js" />
+		<None Remove="ClientApp\src\app\services\master-filter.service.js.map" />
+		<None Remove="ClientApp\src\app\services\mirage\breadcrumb.service.js" />
+		<None Remove="ClientApp\src\app\services\mirage\breadcrumb.service.js.map" />
+		<None Remove="ClientApp\src\app\services\notifications.service.js" />
+		<None Remove="ClientApp\src\app\services\notifications.service.js.map" />
+		<None Remove="ClientApp\src\app\services\orders.service.js" />
+		<None Remove="ClientApp\src\app\services\orders.service.js.map" />
+		<None Remove="ClientApp\src\app\services\page-entities.service.js" />
+		<None Remove="ClientApp\src\app\services\page-entities.service.js.map" />
+		<None Remove="ClientApp\src\app\services\products.service.js" />
+		<None Remove="ClientApp\src\app\services\products.service.js.map" />
+		<None Remove="ClientApp\src\app\services\security.service.js" />
+		<None Remove="ClientApp\src\app\services\security.service.js.map" />
+		<None Remove="ClientApp\src\app\services\services.service.js" />
+		<None Remove="ClientApp\src\app\services\services.service.js.map" />
+		<None Remove="ClientApp\src\app\services\sites.service.js" />
+		<None Remove="ClientApp\src\app\services\sites.service.js.map" />
+		<None Remove="ClientApp\src\app\services\static-data.js" />
+		<None Remove="ClientApp\src\app\services\static-data.js.map" />
+		<None Remove="ClientApp\src\app\services\stores.service.js" />
+		<None Remove="ClientApp\src\app\services\stores.service.js.map" />
+		<None Remove="ClientApp\src\app\services\user-settings.service.js" />
+		<None Remove="ClientApp\src\app\services\user-settings.service.js.map" />
+		<None Remove="ClientApp\src\app\services\wireless-tasks.service.js" />
+		<None Remove="ClientApp\src\app\services\wireless-tasks.service.js.map" />
+		<None Remove="ClientApp\src\main.js" />
+		<None Remove="ClientApp\src\main.js.map" />
+		<None Remove="AbaToday.Web.csproj.vspscc" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <TypeScriptCompile Remove="ClientApp\src\app\directives\number-input.directive.ts" />
+	  <TypeScriptCompile Remove="ClientApp\src\app\models\notification.ts" />
+	  <TypeScriptCompile Remove="ClientApp\src\app\models\number-value-result.ts" />
+	  <TypeScriptCompile Remove="ClientApp\src\app\models\send-notification.ts" />
+	  <TypeScriptCompile Remove="ClientApp\src\app\models\string-value.ts" />
+	  <TypeScriptCompile Remove="ClientApp\src\app\models\vector3.ts" />
+	  <TypeScriptCompile Remove="ClientApp\src\app\pipes\filter.pipe.ts" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Pages\Shared\" />
+		<Folder Include="wwwroot\dist\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\AbaTodayInc.DataAccess\AbaTodayInc.DataAccess.csproj" />
+		<ProjectReference Include="..\AbaTodayInc.Domain\AbaTodayInc.Domain.csproj" />
+		<ProjectReference Include="..\AbaTodayInc.Helpers\AbaTodayInc.Helpers.csproj" />
+		<ProjectReference Include="..\AbaTodayInc.Repos\AbaTodayInc.Repos.csproj" />
+	</ItemGroup>
+
+	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+		<!-- Ensure Node.js is installed -->
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+	</Target>
+
+	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
+
+		<!-- Include the newly-built files in the publish output -->
+		<ItemGroup>
+			<DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
+			<DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+				<RelativePath>%(DistFiles.Identity)</RelativePath>
+				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+				<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			</ResolvedFileToPublish>
+		</ItemGroup>
+	</Target>
+
+</Project>

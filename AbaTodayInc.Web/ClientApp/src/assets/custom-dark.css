@@ -1,0 +1,20 @@
+﻿body .ui-dialog .ui-dialog-content {
+    background-color: #2e3440 !important;
+}
+
+.striped:nth-child(even) {
+    background: #2e3440;
+    color: #d8dee9;
+}
+
+.selected-row {
+    background-color: #676b91 !important;
+}
+
+body a {
+    color: #f38ee2 !important;
+}
+
+.bg-light-gray {
+    background-color: #444444 !important;
+}

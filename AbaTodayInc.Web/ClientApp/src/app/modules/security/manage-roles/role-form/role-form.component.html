@@ -1,0 +1,62 @@
+<div class="p-grid">
+    <div class="p-col-12" id="Section1">
+        <div class="card">
+            <h1>
+                <i *ngIf="isLoading" class="fas fa-fw fa-sync fa-spin"></i>
+                <i *ngIf="!isLoading" class="fas fa-fw fa-user-tag"></i>
+                {{ pageTitle | translate }}
+                <a href="javascript:void(0);" class="btn btn-sm float-right" (click)="showWizard()" style="margin-left: 20px;">
+                    <i class="topbar-icon fa fa-magic" style="font-size:20px;"></i>
+                </a>
+            </h1>
+            <div class="p-grid">
+                <label for="inputIsActive" class="p-col-12 p-md-2">
+                    {{ 'SECURITY.MANAGEROLES.FIELDS.ACTIVE' | translate }}
+                </label>
+                <div class="p-col-12 p-md-10">
+                    <p-checkbox id="inputIsActive"
+                                name="inputIsActive"
+                                [binary]="true"
+                                [value]="'SECURITY.MANAGEROLES.FIELDS.ACTIVE' | translate"
+                                [(ngModel)]="role.isActive"></p-checkbox>
+                </div>
+                <label for="inputName" class="p-col-12 p-md-2">
+                    {{ 'SECURITY.MANAGEROLES.FIELDS.NAME' | translate }}
+                </label>
+                <div class="p-col-12 p-md-10">
+                    <input pInputText
+                           id="inputName"
+                           name="inputName"
+                           type="text"
+                           class="form-control"
+                           [placeholder]="'SECURITY.MANAGEROLES.FIELDS.NAME' | translate"
+                           required
+                           maxlength="64"
+                           [(ngModel)]="role.name" />
+                    <div *ngIf="form.controls['inputName'] && !form.controls['inputName'].valid && form.controls['inputName'].touched"
+                         class="mt-s">
+                        <p-message severity="error"
+                                   [text]="'VALIDATION.FIELDREQUIRED' | translate"></p-message>
+                    </div>
+                </div>
+                <label for="inputDescription" class="p-col-12 p-md-2">
+                    {{ 'SECURITY.MANAGEROLES.FIELDS.DESCRIPTION' | translate }}
+                </label>
+                <div class="p-col-12 p-md-10">
+                    <textarea pInputTextarea
+                              id="inputDescription"
+                              name="inputDescription"
+                              [placeholder]="'SECURITY.MANAGEROLES.FIELDS.DESCRIPTION' | translate"
+                              class="form-control"
+                              [maxlength]="512"
+                              [(ngModel)]="role.description"></textarea>
+                    <div *ngIf="form.controls['inputDescription'] && !form.controls['inputDescription'].valid && form.controls['inputDescription'].touched"
+                         class="mt-s">
+                        <p-message severity="error"
+                                   [text]="'VALIDATION.FIELDREQUIRED' | translate"></p-message>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

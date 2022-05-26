@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbaTodayInc.DataAccess", "AbaTodayInc.DataAccess\AbaTodayInc.DataAccess.csproj", "{DCD39E6E-0881-407C-8BBB-62E68DE202CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbaTodayInc.Domain", "AbaTodayInc.Domain\AbaTodayInc.Domain.csproj", "{365D61A5-A994-4D32-BA9F-B2372F368002}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbaTodayInc.Repos", "AbaTodayInc.Repos\AbaTodayInc.Repos.csproj", "{B620A4CA-A631-4ACB-A495-78524EF1EB89}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbaTodayInc.Helpers", "AbaTodayInc.Helpers\AbaTodayInc.Helpers.csproj", "{407427A3-705B-4ADA-9F33-42A0E68E5E43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbaTodayInc.Web", "AbaTodayInc.Web\AbaTodayInc.Web.csproj", "{5503ED55-F9EA-4072-8AB7-FC269F9F0B68}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F27F54A-470A-4265-AE0E-A5BA01FB0CF5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCD39E6E-0881-407C-8BBB-62E68DE202CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCD39E6E-0881-407C-8BBB-62E68DE202CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCD39E6E-0881-407C-8BBB-62E68DE202CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCD39E6E-0881-407C-8BBB-62E68DE202CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{365D61A5-A994-4D32-BA9F-B2372F368002}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{365D61A5-A994-4D32-BA9F-B2372F368002}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{365D61A5-A994-4D32-BA9F-B2372F368002}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{365D61A5-A994-4D32-BA9F-B2372F368002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B620A4CA-A631-4ACB-A495-78524EF1EB89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B620A4CA-A631-4ACB-A495-78524EF1EB89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B620A4CA-A631-4ACB-A495-78524EF1EB89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B620A4CA-A631-4ACB-A495-78524EF1EB89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{407427A3-705B-4ADA-9F33-42A0E68E5E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{407427A3-705B-4ADA-9F33-42A0E68E5E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{407427A3-705B-4ADA-9F33-42A0E68E5E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{407427A3-705B-4ADA-9F33-42A0E68E5E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5503ED55-F9EA-4072-8AB7-FC269F9F0B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5503ED55-F9EA-4072-8AB7-FC269F9F0B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5503ED55-F9EA-4072-8AB7-FC269F9F0B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5503ED55-F9EA-4072-8AB7-FC269F9F0B68}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ACE0DB2C-73B6-4BA9-9CD4-D17A6DD38C9A}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/artisti
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AbaTodayInc.DataAccess\\AbaTodayInc.DataAccess.csproj
+		SccProjectName1 = AbaTodayInc.DataAccess
+		SccLocalPath1 = AbaTodayInc.DataAccess
+		SccProjectUniqueName2 = AbaTodayInc.Domain\\AbaTodayInc.Domain.csproj
+		SccProjectName2 = AbaTodayInc.Domain
+		SccLocalPath2 = AbaTodayInc.Domain
+		SccProjectUniqueName3 = AbaTodayInc.Repos\\AbaTodayInc.Repos.csproj
+		SccProjectName3 = AbaTodayInc.Repos
+		SccLocalPath3 = AbaTodayInc.Repos
+		SccProjectUniqueName4 = AbaTodayInc.Helpers\\AbaTodayInc.Helpers.csproj
+		SccProjectName4 = AbaTodayInc.Helpers
+		SccLocalPath4 = AbaTodayInc.Helpers
+		SccProjectUniqueName5 = AbaTodayInc.Web\\AbaTodayInc.Web.csproj
+		SccProjectName5 = AbaTodayInc.Web
+		SccLocalPath5 = AbaTodayInc.Web
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,72 @@
+<p-toast position="top-right"></p-toast>
+<div class="ui-fluid">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <div class="card">
+                        <h1>
+                            <i *ngIf="isLoading" class="fas fa-fw fa-sync fa-spin"></i>
+                            <i class=""></i>
+                            <i *ngIf="!isLoading" class="fas fa-fw fa-user-plus"></i>
+                            {{ 'SECURITY.MANAGEUSERSBYROL.NAVTITLE' | translate }}
+                        </h1>
+                        <div class="p-grid">
+                            <label for="inputRoles" class="p-col-12 p-md-12">
+                                {{ 'SECURITY.MANAGEROLESACTIONS.FIELDS.SELECTROLES' | translate }}
+                            </label>
+                            <div class="p-col-12 p-md-5" id="SelectRole">
+                                <p-dropdown id="inputRoles"
+                                            name="inputRoles"
+                                            [options]="roles"
+                                            placeholder="{{ 'GENERAL.SELECT' | translate }}"
+                                            required
+                                            [(ngModel)]="selectedRole"
+                                            (onChange)="onChangeRole($event)"></p-dropdown>
+                            </div>
+                            <div class="p-col-12 p-md-12" >
+                                <p-pickList [disabled]="!selectedRole"
+                                            [source]="users"
+                                            [target]="usersRole"
+                                            sourceHeader="{{ 'SECURITY.MANAGEUSERSBYROL.FIELDS.USERS' | translate }}"
+                                            targetHeader="{{ 'SECURITY.MANAGEUSERSBYROL.FIELDS.USERSSELECTED' | translate }}"
+                                            [showSourceControls]="false"
+                                            [showTargetControls]="false"
+                                            [responsive]="true">
+                                    <ng-template let-user pTemplate="item">
+                                        <div class="ui-helper-clearfix">
+                                            <div>{{user.fullName}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-pickList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="p-col-12" id="SectionSave">
+            <div class="card">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-offset-6 p-md-3">
+                        <button pButton
+                                type="button"
+                                icon="pi pi-check"
+                                label="{{ 'GENERAL.SAVECHANGES' | translate }}"
+                                [disabled]="!usersRole || isLoading"
+                                (click)="saveChanges()"></button>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <button pButton
+                                type="button"
+                                icon="pi pi-undo"
+                                label="{{ 'GENERAL.CANCEL' | translate }}"
+                                class="ui-button-secondary"
+                                (click)="goBack()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

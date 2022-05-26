@@ -1,0 +1,82 @@
+<p-toast position="top-right"></p-toast>
+<div class="ui-fluid">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <div class="p-grid">
+                <div class="p-col-12">
+                    <div class="card">
+                        <h1>
+                            <i *ngIf="isLoading" class="fas fa-fw fa-sync fa-spin"></i>
+                            <i *ngIf="!isLoading" class="fas fa-sign-out-alt"></i>
+                            {{ 'SECURITY.MANAGEROLESACTIONS.NAVTITLE' | translate }}
+                        </h1>
+                        <div class="p-grid">
+                            <label for="inputModule" class="p-col-12 p-md-6">
+                                {{ 'SECURITY.MANAGEROLESACTIONS.FIELDS.SELECTMODULES' | translate }}
+                            </label>
+                            <label for="inputRoles" class="p-col-12 p-md-6 text-right">
+                                {{ 'SECURITY.MANAGEROLESACTIONS.FIELDS.SELECTROLES' | translate }}
+                            </label>
+                            <div class="p-col-12 p-md-5" id="SelectModule">
+                                <p-dropdown id="inputModule"
+                                            name="inputModule"
+                                            [options]="modules"
+                                            placeholder="{{ 'GENERAL.SELECT' | translate }}"
+                                            required
+                                            [(ngModel)]="selectedModule"
+                                            (onChange)="onChangeModule($event)"></p-dropdown>
+                            </div>
+                            <div class="p-col-12 p-md-offset-2 p-md-5" id="SelectRole">
+                                <p-dropdown id="inputRoles"
+                                            name="inputRoles"
+                                            [options]="roles"
+                                            placeholder="{{ 'GENERAL.SELECT' | translate }}"
+                                            required
+                                            [(ngModel)]="selectedRole"
+                                            (onChange)="onChangeRole($event)"></p-dropdown>
+                            </div>
+                            <div class="p-col-12 p-md-12" id="SelectAction">
+                                <p-pickList [disabled]="!selectedModule && !selectedRole" [source]="actions"
+                                            [target]="actionsRole"
+                                            sourceHeader="{{ 'SECURITY.MANAGEROLESACTIONS.FIELDS.ACTIONS' | translate }}"
+                                            targetHeader="{{ 'SECURITY.MANAGEROLESACTIONS.FIELDS.ACTIONSSELECTED' | translate }}"
+                                            [showSourceControls]="false"
+                                            [showTargetControls]="false"
+                                            [responsive]="true">
+                                    <ng-template let-action pTemplate="item">
+                                        <div class="ui-helper-clearfix">
+                                            <div>{{action.actionName}}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-pickList>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="p-col-12" id="SectionSave">
+            <div class="card">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-offset-6 p-md-3">
+                        <button pButton
+                                type="button"
+                                icon="pi pi-check"
+                                label="{{ 'GENERAL.SAVECHANGES' | translate }}"
+                                [disabled]="!actionsRole || isLoading"
+                                (click)="saveChanges()"></button>
+                    </div>
+                    <div class="p-col-12 p-md-3">
+                        <button pButton
+                                type="button"
+                                icon="pi pi-undo"
+                                label="{{ 'GENERAL.CANCEL' | translate }}"
+                                class="ui-button-secondary"
+                                (click)="goBack()"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

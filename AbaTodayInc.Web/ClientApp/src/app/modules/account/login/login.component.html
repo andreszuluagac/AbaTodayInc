@@ -1,0 +1,69 @@
+<p-toast position="top-right"></p-toast>
+<div class="login-body" [ngClass]="{'layout-dark': dark, 'layout-light': !dark}">
+    <div class="login-content">
+        <div class="night-switch">
+            <p-button styleClass="dark-switch" icon="pi pi-circle-on" (click)="changeDark(true)"></p-button>
+            <p-button styleClass="light-switch" icon="pi pi-circle-off" (click)="changeDark(false)"></p-button>
+        </div>
+        <div class="login-panel">
+            <div class="login-panel-content">
+                <div class="logo">
+                    <img src="assets/img/logo-2.png" alt="AbaToday Logo" />
+                </div>
+                <h1>{{ 'ACCOUNT.LOGIN.FIELDS.WELCOME' | translate }}</h1>
+                <!--<p>Welcome, please use the form to sign-in Mirage network</p>-->
+                <form #loginForm="ngForm">
+                    <div class="forms">
+                        <div class="login-input-wrapper">
+                            <label for="inputEmail">{{ 'ACCOUNT.LOGIN.FIELDS.EMAIL' | translate }}</label>
+                            <input pInputText
+                                   id="inputEmail"
+                                   name="inputEmail"
+                                   type="email"
+                                   required
+                                   [placeholder]="'ACCOUNT.LOGIN.FIELDS.EMAIL' | translate"
+                                   maxlength="128"
+                                   [(ngModel)]="login.emailAddress" />
+                            <i class="pi pi-envelope"></i>
+                        </div>
+                        <div class="login-input-wrapper">
+                            <label for="inputPassword">{{ 'ACCOUNT.LOGIN.FIELDS.PASSWORD' | translate }}</label>
+                            <input pPassword
+                                   type="password"
+                                   id="inputPassword"
+                                   name="inputPassword"
+                                   required
+                                   [placeholder]="'ACCOUNT.LOGIN.FIELDS.PASSWORD' | translate"
+                                   [feedback]="true"
+                                   maxlength="128"
+                                   [(ngModel)]="login.password" />
+                            <i class="pi pi-lock"></i>
+                        </div>
+                        <div class="login-input-wrapper">
+                            <label for="inputLanguage">{{ 'ACCOUNT.LOGIN.FIELDS.LANGUAGE' | translate }}</label>
+                            <p-dropdown id="inputLanguage"
+                                        name="inputLanguage"
+                                        [options]="languages"
+                                        [(ngModel)]="login.language"></p-dropdown>
+                        </div>
+                        <div class="buttons">
+                            <button pButton
+                                    type="button"
+                                    [disabled]="!loginForm.form.valid || isLoading"
+                                    (click)="doLogin()"
+                                    [label]="'ACCOUNT.LOGIN.FIELDS.LOGIN' | translate"></button>
+                            <a class="secondary-button" [routerLink]="['/account/forgotPassword']">
+                                {{ 'ACCOUNT.LOGIN.FIELDS.FORGOT' | translate }}
+                            </a>
+                            <a class="secondary-button" [routerLink]="['/account/register']">
+                                {{ 'ACCOUNT.LOGIN.FIELDS.REGISTER' | translate }}
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="desert"></div>
+    </div>
+</div>

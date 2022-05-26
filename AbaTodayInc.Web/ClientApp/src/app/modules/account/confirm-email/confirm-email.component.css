@@ -1,0 +1,7 @@
+.login-body .login-content .login-panel .login-panel-content a.secondary-button {
+    text-decoration: underline;
+}
+
+.login-body.layout-dark .login-content .login-panel .login-panel-content a.secondary-button {
+    color: #c3ccdd;
+}
