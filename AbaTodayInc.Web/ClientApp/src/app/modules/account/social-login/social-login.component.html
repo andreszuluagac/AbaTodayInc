@@ -1,0 +1,31 @@
+﻿<p-toast position="top-right"></p-toast>
+<div class="login-body" [ngClass]="{'layout-dark': dark, 'layout-light': !dark}">
+    <div class="login-content">
+        <div class="night-switch">
+            <p-button styleClass="dark-switch" icon="pi pi-circle-on" (click)="changeDark(true)"></p-button>
+            <p-button styleClass="light-switch" icon="pi pi-circle-off" (click)="changeDark(false)"></p-button>
+        </div>
+        <div class="login-panel">
+            <div class="login-panel-content">
+                <div class="logo">
+                    <img src="assets/img/logo-2.png" alt="AbaToday Logo" />
+                </div>
+                <h1> Sign in with social networks </h1>
+
+                <form #loginForm="ngForm">
+                    <div class="forms">
+                        <div class="login-input-wrapper">
+                            <label for="inputLanguage">{{ 'ACCOUNT.LOGIN.FIELDS.LANGUAGE' | translate }}</label>
+                            <p-dropdown id="inputLanguage"
+                                        name="inputLanguage"
+                                        [options]="languages"
+                                        [(ngModel)]="login.language"></p-dropdown>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="desert"></div>
+    </div>
+</div>

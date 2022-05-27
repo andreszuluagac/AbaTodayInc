@@ -7,6 +7,7 @@ import { RegisterComponent } from "./register/register.component";
 import { ConfirmEmailComponent } from "./confirm-email/confirm-email.component";
 import { ForgotPasswordComponent } from "./forgot-password/forgot-password.component";
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
+import { SocialLoginComponent } from "./social-login/social-login.component";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ResetPasswordComponent } from "./reset-password/reset-password.componen
         RegisterComponent,
         ConfirmEmailComponent,
         ForgotPasswordComponent,
-        ResetPasswordComponent],
+        ResetPasswordComponent,
+        SocialLoginComponent],
   imports: [
     SharedModule,
     AccountRoutingModule

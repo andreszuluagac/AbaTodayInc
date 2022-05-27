@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { MessageService, SelectItem } from "primeng/api";
 import { ContactUs } from "../../../models/contactus";
-import { BreadcrumbService } from "../../../services/mirage/breadcrumb.service";
 import { NotificationsService } from "../../../services/notifications.service";
 
 @Component({
@@ -14,7 +13,6 @@ export class HomeComponent implements OnInit {
     contactUs: ContactUs = { email: null, name: null, message: null };
 
     constructor(
-        private readonly breadcrumbService: BreadcrumbService,
         private readonly translate: TranslateService,
         private readonly messageService: MessageService,
         private readonly router: Router,
@@ -41,7 +39,7 @@ export class HomeComponent implements OnInit {
     }
 
     navigateToDashboard() {
-        this.router.navigate(["/dashboard"]);
+        this.router.navigate(["/account", "socialLogin"]);
     }
 
     navigateToRegister() {

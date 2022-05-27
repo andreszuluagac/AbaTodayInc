@@ -271,6 +271,7 @@
 		<None Remove="ClientApp\src\app\modules\account\register\register.component.js.map" />
 		<None Remove="ClientApp\src\app\modules\account\reset-password\reset-password.component.js" />
 		<None Remove="ClientApp\src\app\modules\account\reset-password\reset-password.component.js.map" />
+		<None Remove="ClientApp\src\app\modules\account\social-login\social-login.component.ts" />
 		<None Remove="ClientApp\src\app\modules\dashboard\dashboard-routing.module.js" />
 		<None Remove="ClientApp\src\app\modules\dashboard\dashboard-routing.module.js.map" />
 		<None Remove="ClientApp\src\app\modules\dashboard\dashboard.module.js" />
