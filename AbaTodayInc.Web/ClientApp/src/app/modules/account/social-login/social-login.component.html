@@ -8,21 +8,27 @@
         <div class="login-panel">
             <div class="login-panel-content">
                 <div class="logo">
-                    <img src="assets/img/logo-2.png" alt="AbaToday Logo" />
+                    <img src="assets/img/ABA.png" alt="AbaToday Logo" />
                 </div>
                 <h1> Sign in with social networks </h1>
 
-                <form #loginForm="ngForm">
-                    <div class="forms">
-                        <div class="login-input-wrapper">
-                            <label for="inputLanguage">{{ 'ACCOUNT.LOGIN.FIELDS.LANGUAGE' | translate }}</label>
-                            <p-dropdown id="inputLanguage"
-                                        name="inputLanguage"
-                                        [options]="languages"
-                                        [(ngModel)]="login.language"></p-dropdown>
-                        </div>
+                <button _ngcontent-hix-c2="" class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()">
+                    <span _ngcontent-hix-c2="" class="fab fa-google"></span>
+                </button>
+                <button _ngcontent-hix-c2="" class="btn btn-social-icon btn-facebook mx-1 btn btn-primary" (click)="signInWithFB()">
+                    <span _ngcontent-hix-c2="" class="fab fa-facebook"></span>
+                </button>
+                <button (click)="signOut()">
+                    Sign Out
+                </button>
+
+                <div *ngIf="user" style="margin-top:50px">
+                    <img src="{{ user.photoUrl }}">
+                    <div>
+                        <h4>{{ user.name }}</h4>
+                        <p>{{ user.email }}</p>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
 

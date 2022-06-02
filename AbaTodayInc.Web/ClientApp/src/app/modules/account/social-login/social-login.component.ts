@@ -9,6 +9,10 @@ import { AuthService } from "../../../services/auth.service";
 import { IdentityService } from "../../../services/identity.service";
 import { UserSettingsService } from "../../../services/user-settings.service";
 
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { SocialUser } from "angularx-social-login";
+
 const LANGUAGE = "language";
 const DEFAULTLANGUAGE = "en";
 
@@ -31,6 +35,9 @@ export class SocialLoginComponent implements OnInit {
     menuColors: any;
     selectedColorOptions: any;
     componentThemes: any;
+    user: SocialUser;
+    loggedIn: boolean;
+
 
     constructor(
         private readonly identityService: IdentityService,
@@ -38,7 +45,8 @@ export class SocialLoginComponent implements OnInit {
         private readonly translate: TranslateService,
         private readonly userSettings: UserSettingsService,
         private readonly router: Router,
-        private readonly authService: AuthService) {
+        private readonly authService: AuthService,
+        private readonly socialAuthService: SocialAuthService) {
         if (this.identityService.isAuthenticated) {
             this.router.navigate(["/dashboard"]);
         } else {
@@ -52,105 +60,22 @@ export class SocialLoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.languages.push({ label: "English", value: "en" });
-        this.languages.push({ label: "Español", value: "es" });
-        this.languages.push({ label: "Français", value: "fr" });
-        this.languages.push({ label: "Portuguese", value: "pt" });
+        this.socialAuthService.authState.subscribe((user) => {
+            this.user = user;
+            this.loggedIn = (user != null);
+        });
+    }
 
-        this.lightColors = [
-            { name: "Blue", file: "blue", image: "blue.svg" },
-            { name: "Green", file: "green", image: "green.svg" },
-            { name: "Yellow", file: "yellow", image: "yellow.svg" },
-            { name: "Cyan", file: "cyan", image: "cyan.svg" },
-            { name: "Purple", file: "purple", image: "purple.svg" },
-            { name: "Orange", file: "orange", image: "orange.svg" },
-            { name: "Teal", file: "teal", image: "teal.svg" },
-            { name: "Magenta", file: "magenta", image: "magenta.svg" },
-            { name: "Lime", file: "lime", image: "lime.svg" },
-            { name: "Brown", file: "brown", image: "brown.svg" },
-            { name: "Red", file: "red", image: "red.svg" },
-            { name: "Indigo", file: "indigo", image: "indigo.svg" }
-        ];
+    signInWithGoogle(): void {
+        this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    }
 
-        this.darkColors = [
-            { name: "Blue", file: "blue", image: "blue.svg" },
-            { name: "Green", file: "green", image: "green.svg" },
-            { name: "Yellow", file: "yellow", image: "yellow.svg" },
-            { name: "Cyan", file: "cyan", image: "cyan.svg" },
-            { name: "Purple", file: "purple", image: "purple.svg" },
-            { name: "Orange", file: "orange", image: "orange.svg" },
-            { name: "Teal", file: "teal", image: "teal.svg" },
-            { name: "Magenta", file: "magenta", image: "magenta.svg" },
-            { name: "Lime", file: "lime", image: "lime.svg" },
-            { name: "Brown", file: "brown", image: "brown.svg" },
-            { name: "Red", file: "red", image: "red.svg" },
-            { name: "Indigo", file: "indigo", image: "indigo.svg" }
-        ];
+    signInWithFB(): void {
+        this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    }
 
-        this.customColors = [
-            { name: "Chile", file: "chile", image: "chile.png" },
-            { name: "Naples", file: "naples", image: "naples.png" },
-            { name: "Georgia", file: "georgia", image: "georgia.png" },
-            { name: "Infinity", file: "infinity", image: "infinity.png" },
-            { name: "Chicago", file: "chicago", image: "chicago.png" },
-            { name: "Majesty", file: "majesty", image: "majesty.png" },
-            { name: "Fish", file: "fish", image: "fish.png" },
-            { name: "Dawn", file: "dawn", image: "dawn.png" },
-            { name: "Record", file: "record", image: "record.png" },
-            { name: "Pool", file: "pool", image: "pool.png" },
-            { name: "Metal", file: "metal", image: "metal.png" },
-            { name: "China", file: "china", image: "china.png" },
-            { name: "Table", file: "table", image: "table.png" },
-            { name: "Panorama", file: "panorama", image: "panorama.png" },
-            { name: "Barcelona", file: "barcelona", image: "barcelona.png" },
-            { name: "Underwater", file: "underwater", image: "underwater.png" },
-            { name: "Symmetry", file: "symmetry", image: "symmetry.png" },
-            { name: "Rain", file: "rain", image: "rain.png" },
-            { name: "Utah", file: "utah", image: "utah.png" },
-            { name: "Wave", file: "wave", image: "wave.png" },
-            { name: "Flora", file: "flora", image: "flora.png" },
-            { name: "Speed", file: "speed", image: "speed.png" },
-            { name: "Canopy", file: "canopy", image: "canopy.png" },
-            { name: "SanPaolo", file: "sanpaolo", image: "sanpaolo.png" },
-            { name: "Basketball", file: "basketball", image: "basketball.png" },
-            { name: "Misty", file: "misty", image: "misty.png" },
-            { name: "Summit", file: "summit", image: "summit.png" },
-            { name: "Wall", file: "wall", image: "wall.png" },
-            { name: "Ferris", file: "ferris", image: "ferris.png" },
-            { name: "Ship", file: "ship", image: "ship.png" },
-            { name: "NY", file: "ny", image: "ny.png" },
-            { name: "Cyan", file: "cyan", image: "cyan.png" },
-            { name: "Violet", file: "violet", image: "violet.png" },
-            { name: "Red", file: "red", image: "red.png" },
-            { name: "Blue", file: "blue", image: "blue.png" },
-            { name: "Porsuk", file: "porsuk", image: "porsuk.png" },
-            { name: "Pink", file: "pink", image: "pink.png" },
-            { name: "Purple", file: "purple", image: "purple.png" },
-            { name: "Orange", file: "orange", image: "orange.png" }
-        ];
-
-        this.menuColors = [
-            { name: "light" },
-            { name: "custom" },
-            { name: "dark" }
-        ];
-
-        this.selectedColorOptions = this.darkColors;
-
-        this.componentThemes = [
-            { name: "Blue", file: "blue", image: "blue.svg" },
-            { name: "Green", file: "green", image: "green.svg" },
-            { name: "Yellow", file: "yellow", image: "yellow.svg" },
-            { name: "Cyan", file: "cyan", image: "cyan.svg" },
-            { name: "Purple", file: "purple", image: "purple.svg" },
-            { name: "Orange", file: "orange", image: "orange.svg" },
-            { name: "Teal", file: "teal", image: "teal.svg" },
-            { name: "Magenta", file: "magenta", image: "magenta.svg" },
-            { name: "Lime", file: "lime", image: "lime.svg" },
-            { name: "Brown", file: "brown", image: "brown.svg" },
-            { name: "Red", file: "red", image: "red.svg" },
-            { name: "Indigo", file: "indigo", image: "indigo.svg" }
-        ];
+    signOut(): void {
+        this.socialAuthService.signOut();
     }
 
     doLogin() {

@@ -9,6 +9,9 @@ import { ForgotPasswordComponent } from "./forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 import { SocialLoginComponent } from "./social-login/social-login.component";
 
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+
 
 @NgModule({
     declarations: [
@@ -18,9 +21,30 @@ import { SocialLoginComponent } from "./social-login/social-login.component";
         ForgotPasswordComponent,
         ResetPasswordComponent,
         SocialLoginComponent],
-  imports: [
-    SharedModule,
-    AccountRoutingModule
-  ]
+    imports: [
+        SharedModule,
+        AccountRoutingModule,
+        SocialLoginModule
+    ],
+    providers: [
+        {
+            provide: 'SocialAuthServiceConfig',
+            useValue: {
+                autoLogin: false,
+                providers: [
+                    {
+                        id: GoogleLoginProvider.PROVIDER_ID,
+                        provider: new GoogleLoginProvider(
+                            '624796833023-clhjgupm0pu6vgga7k5i5bsfp6qp6egh.apps.googleusercontent.com'
+                        ),
+                    },
+                    {
+                        id: FacebookLoginProvider.PROVIDER_ID,
+                        provider: new FacebookLoginProvider('724180225375591'),
+                    }
+                ],
+            } as SocialAuthServiceConfig,
+        }
+    ]
 })
 export class AccountModule { }
