@@ -39,6 +39,10 @@ export class HomeComponent implements OnInit {
     }
 
     navigateToDashboard() {
+        this.router.navigate(["/account", "login"]);
+    }
+
+    navigateToCustomerDashboard() {
         this.router.navigate(["/account", "socialLogin"]);
     }
 
