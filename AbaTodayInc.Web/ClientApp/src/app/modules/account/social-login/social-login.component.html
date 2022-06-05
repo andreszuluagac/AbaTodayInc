@@ -18,7 +18,7 @@
                 <button class="fb btn" (click)="signInWithFB()">
                     <span _ngcontent-hix-c2="" class="fab fa-facebook"></span>
                 </button>
-                <button class="sign-out btn" (click)="signOut()">
+                <button class="sign-out btn" (click)="signOut()" *ngIf="loggedIn">
                     Sign Out
                 </button>
 
