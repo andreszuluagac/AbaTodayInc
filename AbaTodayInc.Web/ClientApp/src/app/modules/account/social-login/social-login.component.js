@@ -150,7 +150,8 @@ var SocialLoginComponent = /** @class */ (function () {
     SocialLoginComponent = __decorate([
         core_1.Component({
             selector: "app-social-login",
-            templateUrl: "./social-login.component.html"
+            templateUrl: "./social-login.component.html",
+            styleUrls: ["./social-login.component.css"]
         })
     ], SocialLoginComponent);
     return SocialLoginComponent;
