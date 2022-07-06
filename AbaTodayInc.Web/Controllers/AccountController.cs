@@ -9,10 +9,12 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using System.Web;
+using AbaToday.DataAccess;
 using AbaToday.Domain.Data;
 using AbaToday.Helpers;
 using AbaToday.Repos.Domain.Interfaces;
 using AbaToday.Web.Dtos;
+using AbaTodayInc.Repos.Domain.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -32,16 +34,18 @@ namespace AbaToday.Web.Controllers
         private readonly IEmailSender _emailSender;
         private readonly IWebHostEnvironment _env;
         private readonly ISecurityRepo _securityRepo;
+        private readonly ICustomerRepo _customerRepo;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        
         public AccountController(
-            IConfiguration config,
-            SignInManager<ApplicationUser> signInManager,
-            IWebHostEnvironment env,
-            ISecurityRepo securityRepo,
-            UserManager<ApplicationUser> userManager,
-            IEmailSender emailSender)
+                            IConfiguration config,
+                            SignInManager<ApplicationUser> signInManager,
+                            IWebHostEnvironment env,
+                            ISecurityRepo securityRepo,
+                            UserManager<ApplicationUser> userManager,
+                            IEmailSender emailSender,
+                            ICustomerRepo customerRepo)
         {
             _emailSender = emailSender;
             _config = config;
@@ -49,6 +53,7 @@ namespace AbaToday.Web.Controllers
             _securityRepo = securityRepo;
             _signInManager = signInManager;
             _userManager = userManager;
+            _customerRepo = customerRepo;
         }
 
         [HttpPost]
@@ -84,8 +89,8 @@ namespace AbaToday.Web.Controllers
                 }
 
                 var result = await _signInManager.CheckPasswordSignInAsync(
-                    user, 
-                    login.Password, 
+                    user,
+                    login.Password,
                     false);
                 if (!result.Succeeded)
                 {
@@ -110,7 +115,7 @@ namespace AbaToday.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody] RegisterDto register)
+        public async Task<IActionResult> Register([FromBody] Customer customer)
         {
             try
             {
@@ -120,39 +125,16 @@ namespace AbaToday.Web.Controllers
                     return BadRequest(errorMessage);
                 }
 
-                var user = new ApplicationUser
-                {
-                    UserName = register.EmailAddress,
-                    Email = register.EmailAddress,
-                    FullName = register.FullName,
-                    PhoneNumber = register.PhoneNumber != null ? register.PhoneNumberCode + " " + register.PhoneNumber : register.PhoneNumber,
-                    IsActive = true,
-                    EmailConfirmed = false
-                };
+                customer.Id = Guid.NewGuid();
+                customer.PasswordHash = customer.PasswordHash.GetHashCode().ToString();
 
-                var result = await _userManager.CreateAsync(user, register.Password);
-                if (!result.Succeeded)
+                var response = _customerRepo.Add(customer);
+                if (!response)
                 {
-                    return BadRequest(string.Join(",", result.Errors.Select(a => a.Code)));
+                    return BadRequest($"Error trying register Customer: {response}");
                 }
 
-                await _userManager.AddToRoleAsync(user, "subscriptionadmin");
-
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var baseUrl = $"{Request.Scheme}://{Request.Host}{Request.PathBase}";
-                var callbackUrl = $"{baseUrl}/#/account/confirmEmail?code={HttpUtility.UrlEncode(code)}&user={user.UserName}";
-
-                await _emailSender.SendEmailAsync(
-                    register.EmailAddress,
-                    _config["EmailMessages:WelcomeMessage:Subject"],
-                    string.Format(_config["EmailMessages:WelcomeMessage:Body"],
-                        HtmlEncoder.Default.Encode(callbackUrl)));
-
-                //await _signInManager.SignInAsync(user, true);
-                //var results = GetJwtToken(user);
-                //return Ok(results);
-
-                return Ok();
+                return Ok("Customer register succesfully");
             }
             catch (Exception e)
             {

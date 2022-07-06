@@ -39,6 +39,5 @@ namespace AbaToday.DataAccess
         public DbSet<Country> Countries { get; set; }
         public DbSet<SubscriptionTypeMenuItem> SubscriptionTypeMenuItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
-
     }
 }

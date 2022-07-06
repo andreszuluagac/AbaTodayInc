@@ -2,11 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
 import { TranslateService } from "@ngx-translate/core";
 
-import { Register } from "../../../models/register";
 import { AuthService } from "../../../services/auth.service";
 import { UserSettingsService } from "../../../services/user-settings.service";
 import { MasterDataService } from "../../../services/master-data.service";
 import { MessageService, SelectItem } from "primeng/api";
+import { Customer } from "../../../models/customer";
 
 @Component({
     selector: "app-register",
@@ -14,7 +14,7 @@ import { MessageService, SelectItem } from "primeng/api";
 })
 export class RegisterComponent implements OnInit {
     dark: boolean = this.userSettings.darkMode;
-    register: Register = { emailAddress: null, fullName: null, password: null, confirmPassword: null };
+    customer: Customer = { id: "00000000-0000-0000-0000-000000000000", email: null, name: null, passwordHash: null, isSubscribed: true };
     isLoading = false;
     userRegistered = false;
     errors: string[] = [];
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
     doRegister() {
         this.isLoading = true;
         this.errors = [];
-        this.authService.register(this.register).subscribe(
+        this.authService.registerCustomer(this.customer).subscribe(
             () => {
                 this.userRegistered = true;
             }, (err: HttpErrorResponse) => {

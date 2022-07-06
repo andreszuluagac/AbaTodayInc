@@ -129,6 +129,7 @@
 		<None Remove="ClientApp\src\app\models\customer-additional-data.js.map" />
 		<None Remove="ClientApp\src\app\models\customer.js" />
 		<None Remove="ClientApp\src\app\models\customer.js.map" />
+		<None Remove="ClientApp\src\app\models\customer.ts" />
 		<None Remove="ClientApp\src\app\models\data-list.js" />
 		<None Remove="ClientApp\src\app\models\data-list.js.map" />
 		<None Remove="ClientApp\src\app\models\dynamic-header-chart.js" />

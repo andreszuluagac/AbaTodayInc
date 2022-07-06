@@ -22,12 +22,21 @@
                     Sign Out
                 </button>
 
-                <div *ngIf="user" style="margin-top:50px">
-                    <img src="{{ user.photoUrl }}">
-                    <div>
-                        <h4>{{ user.name }}</h4>
-                        <p>{{ user.email }}</p>
+                <div class="col">
+                    <div class="hide-md-lg">
+                        <p>Or sign in manually:</p>
                     </div>
+
+                    <input type="text" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button class="sign-out btn" (click)="signIn()">
+                        Sign In
+                    </button>
+                </div>
+
+                <div style="margin-top: -12px;" *ngIf="user">
+                    <p>{{ user.email }}</p>
+
                 </div>
             </div>
         </div>

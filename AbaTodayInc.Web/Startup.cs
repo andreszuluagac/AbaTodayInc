@@ -25,6 +25,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using AbaToday.Repos.Domain.Interfaces;
 using AbaToday.Repos.Domain.Implementations;
+using AbaTodayInc.Repos.Domain.Interfaces;
+using AbaTodayInc.Repos.Domain.Implementations;
 
 namespace AbaToday.Web
 {
@@ -112,6 +114,7 @@ namespace AbaToday.Web
             services.AddTransient<IMasterEntityRepo, MasterEntityRepo>();
             services.AddTransient<INotificationsRepo, NotificationsRepo>();
             services.AddTransient<IEnviaHttpService, EnviaHttpService>();
+            services.AddTransient<ICustomerRepo, CustomerRepo>();
 
             services.AddApplicationInsightsTelemetry();
 

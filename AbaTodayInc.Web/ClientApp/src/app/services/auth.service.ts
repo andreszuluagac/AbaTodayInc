@@ -10,6 +10,7 @@ import { ResetPassword } from "../models/reset-password";
 import { ForgotPassword } from "../models/forgot-password";
 import { Register } from "../models/register";
 import { AuthToken } from "../models/auth-token";
+import { Customer } from "../models/customer";
 
 @Injectable({
     providedIn: "root"
@@ -37,9 +38,10 @@ export class AuthService {
         this.identityService.roleNames = null;
     }
 
-    register(register: Register): Observable<void> {
+    registerCustomer(customer: Customer): Observable<void> {
+        debugger;
         const endpoint = "/api/account/register";
-        return this.http.post<void>(endpoint, register);
+        return this.http.post<void>(endpoint, customer);
     }
 
     resetPassword(resetData: ResetPassword): Observable<void> {

@@ -30,9 +30,10 @@ var AuthService = /** @class */ (function () {
         this.identityService.userName = null;
         this.identityService.roleNames = null;
     };
-    AuthService.prototype.register = function (register) {
+    AuthService.prototype.registerCustomer = function (customer) {
+        debugger;
         var endpoint = "/api/account/register";
-        return this.http.post(endpoint, register);
+        return this.http.post(endpoint, customer);
     };
     AuthService.prototype.resetPassword = function (resetData) {
         var endpoint = "api/account/resetPassword";
